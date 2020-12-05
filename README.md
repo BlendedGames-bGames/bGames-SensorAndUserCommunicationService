@@ -1,1 +1,1 @@
-# bGames-SensorAndUserCommunicationService
+# bGames-SensorManagementAndConfigurationService
