@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios').default;
+var jsonParser = bodyParser.json()
 
-
-const fetch = require('node-fetch');
-const mysqlConnection = require('../database');
+const wrap = fn => (...args) => fn(...args).catch(args[2])
 
 /* 
 CRUD de videogames, mechanics y su relacion
@@ -31,7 +31,7 @@ RETRIEVE MODIFIABLE_MECHANIC:
 
 //1) Obtener UN modifiable_mechanic en particular 
 //WORKS
-router.get('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
+router.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
     var options = {
@@ -56,10 +56,10 @@ router.get('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 //2) Obtener UN videojuego en especial 
 //WORKS
-router.get('/videogame/:id_videogame',(req,res,next)=>{
+router.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame;
 
     var options = {
@@ -84,11 +84,11 @@ router.get('/videogame/:id_videogame',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 
 //3) Obtener UNA la relacion videojuegos y mecanicas en particular dado id
 //WORKS
-router.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',(req,res,next)=>{
+router.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame;
 
     var options = {
@@ -113,11 +113,11 @@ router.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',(r
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 
 //4) Obtener UNA la relacion videojuegos y mecanicas en particular dado videogame y modifiable mechanic
 //WORKS
-router.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',(req,res,next)=>{
+router.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame;
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
@@ -143,11 +143,11 @@ router.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 
 //5) Obtener TODOS los modifiable_mechanic 
 //WORKS
-router.get('/modifiable_mechanic_all',(req,res,next)=>{
+router.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
         host : 'bgames-sensormanagement.herokuapp.com',
@@ -171,10 +171,10 @@ router.get('/modifiable_mechanic_all',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 //6) Obtener TODOS los videojuegos 
 //WORKS
-router.get('/videogames',(req,res,next)=>{
+router.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
         host : 'bgames-sensormanagement.herokuapp.com',
@@ -198,11 +198,11 @@ router.get('/videogames',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 
 //7) Obtener TODAS las relaciones videojuegos y mecanicas
 //WORKS
-router.get('/modifiable_mechanic_videogame_all',(req,res,next)=>{
+router.get('/modifiable_mechanic_videogame_all',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
         host : 'bgames-sensormanagement.herokuapp.com',
@@ -226,7 +226,7 @@ router.get('/modifiable_mechanic_videogame_all',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 /*
 CREATE ENDPOINTS:
 
@@ -240,7 +240,7 @@ CREATE ENDPOINTS:
 
 //1)Crea un online_sensor 
 //WORKS
-router.post('/videogame',(req,res,next)=>{
+router.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
     var videogame_data = req.body
 
     var options = {
@@ -262,11 +262,11 @@ router.post('/videogame',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 //2) Crear una modifiable_mechanic template 
 //WORKS
-router.post('/modifiable_mechanic',(req,res,next)=>{
+router.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var modifiable_mechanic_data = req.body
 
     var options = {
@@ -288,11 +288,11 @@ router.post('/modifiable_mechanic',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 //3) Crear una relacion relaciones videojuegos y mecanicas
 //WORKS
-router.post('/modifiable_mechanic_videogame',(req,res,next)=>{
+router.post('/modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var modifiable_mechanic_videogame_data = req.body
 
     var options = {
@@ -314,7 +314,7 @@ router.post('/modifiable_mechanic_videogame',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 /*
 UPDATE ENDPOINTS:
@@ -334,7 +334,7 @@ CASCADE Y CASCADE
 
 //1) Modificar la info de un videogame 
 //WORKS
-router.put('/videogame/:id_videogame',(req,res,next)=>{
+router.put('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
 
     var id_videogame = req.params.id_videogame
     var videogame_data = req.body
@@ -349,7 +349,7 @@ router.put('/videogame/:id_videogame',(req,res,next)=>{
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.put(MEDIUM_PUT_URL,videogame_data);
+        const response = await axios.put(MEDIUM_PUT_URL,videogame_data);
         console.log(response)
         res.status(200).json({response: response.data })
 
@@ -360,11 +360,11 @@ router.put('/videogame/:id_videogame',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 //2) Modificar la info de un modifiable_mechanic 
 //WORKS
-router.put('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
+router.put('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic= req.params.id_modifiable_mechanic
 
     var modifiable_mechanic_data = req.body
@@ -379,7 +379,7 @@ router.put('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.put(MEDIUM_PUT_URL,modifiable_mechanic_data);
+        const response = await axios.put(MEDIUM_PUT_URL,modifiable_mechanic_data);
         console.log(response)
         res.status(200).json({response: response.data })
 
@@ -390,11 +390,11 @@ router.put('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 //3) Modificar una relacion videogame mechanic dado su id
 //WORKS
-router.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',(req,res,next)=>{
+router.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame
 
     var relation_data = req.body
@@ -409,7 +409,7 @@ router.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',(r
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.put(MEDIUM_PUT_URL,relation_data);
+        const response = await axios.put(MEDIUM_PUT_URL,relation_data);
         console.log(response)
         res.status(200).json({response: response.data })
 
@@ -420,11 +420,11 @@ router.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',(r
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 //4) Modificar una relacion videogame mechanic dado id_modifiable_mechanic y id_videogame
 //WORKS
-router.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',(req,res,next)=>{
+router.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
@@ -439,7 +439,7 @@ router.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.put(MEDIUM_PUT_URL,relation_data);
+        const response = await axios.put(MEDIUM_PUT_URL,relation_data);
         console.log(response)
         res.status(200).json({response: response.data })
 
@@ -450,7 +450,7 @@ router.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 /*
 DELETE ENDPOINTS:
 
@@ -465,7 +465,7 @@ DELETE ENDPOINTS:
 */
 //1) Borrar el videogame 
 //WORKS
-router.delete('/videogame/:id_videogame',(req,res,next)=>{
+router.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
 
     var id_videogame = req.params.id_videogame
     
@@ -478,7 +478,7 @@ router.delete('/videogame/:id_videogame',(req,res,next)=>{
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.delete(MEDIUM_PUT_URL);
+        const response = await axios.delete(MEDIUM_PUT_URL);
         console.log(response)
         res.status(200).json({response: response.data })
 
@@ -489,10 +489,10 @@ router.delete('/videogame/:id_videogame',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 //2) Borrar la mecanica 
 //WORKS
-router.delete('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
+router.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
 
@@ -505,7 +505,7 @@ router.delete('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.delete(MEDIUM_PUT_URL);
+        const response = await axios.delete(MEDIUM_PUT_URL);
         console.log(response)
         res.status(200).json({response: response.data })
 
@@ -516,11 +516,11 @@ router.delete('/modifiable_mechanic/:id_modifiable_mechanic',(req,res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 //3) Borrar la relacion videogame y mecanica dado su id
 //WORKS
-router.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',(req,res,next)=>{
+router.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame
 
     var options = {
@@ -543,11 +543,11 @@ router.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame'
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 // 4) Borrar la relacion videogame y mecanica dados sus llaves foraneas id videogame y modifiable_mechanic
 //WORKS
-router.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',(req,res,next)=>{
+router.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
@@ -561,7 +561,7 @@ router.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mecha
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.delete(MEDIUM_PUT_URL);
+        const response = await axios.delete(MEDIUM_PUT_URL);
         console.log(response)
         res.status(200).json({response: response.data })
 
@@ -572,7 +572,7 @@ router.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mecha
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores y usuarios, intente nuevamente' })
 
     } 
-})
+}))
 
 
 module.exports = router;
