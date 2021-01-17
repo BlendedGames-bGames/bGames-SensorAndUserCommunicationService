@@ -1,12 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const axios = require('axios').default;
 
 var common = require('./extras');
-
-const express = require('express');
-const router = express.Router();
 
 /*
 Input: Id of a player (range 0 to positive int)
