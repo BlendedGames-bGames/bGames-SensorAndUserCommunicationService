@@ -13,6 +13,12 @@ TODO: DELETE
 */
 
 
+router.get("/", (req,res) =>{
+    var variable = req.body
+    res.status(200).json(variable)
+
+});
+
 /* Ejemplo de Json del online sensor
     {
         "id_online_sensor": 2,
