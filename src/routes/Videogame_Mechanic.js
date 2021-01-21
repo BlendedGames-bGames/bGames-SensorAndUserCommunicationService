@@ -37,7 +37,7 @@ router.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(asyn
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -65,7 +65,7 @@ router.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -94,7 +94,7 @@ router.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',js
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -124,7 +124,7 @@ router.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString() + '/'+ id_modifiable_mechanic.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -152,7 +152,7 @@ router.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic
 router.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_all')       
     };
     var url = "https://"+options.host + options.path;
@@ -179,7 +179,7 @@ router.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,res,next)=>{
 router.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogames')       
     };
     var url = "https://"+options.host + options.path;
@@ -207,7 +207,7 @@ router.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 router.get('/modifiable_mechanic_videogame_all',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame_all')       
     };
     var url = "https://"+options.host + options.path;
@@ -246,7 +246,7 @@ router.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
     var videogame_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame')       
     };
     var url = "https://"+options.host + options.path;
@@ -272,7 +272,7 @@ router.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var modifiable_mechanic_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic')       
     };
     var url = "https://"+options.host + options.path;
@@ -298,7 +298,7 @@ router.post('/modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,nex
     var modifiable_mechanic_videogame_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame')       
     };
     var url = "https://"+options.host + options.path;
@@ -343,7 +343,7 @@ router.put('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -373,7 +373,7 @@ router.put('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(asyn
 
     
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -403,7 +403,7 @@ router.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',js
 
     
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -433,7 +433,7 @@ router.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic
     var relation_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+'/'+id_modifiable_mechanic.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -472,7 +472,7 @@ router.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>
     var id_videogame = req.params.id_videogame
     
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -499,7 +499,7 @@ router.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(a
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -526,7 +526,7 @@ router.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame'
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -555,7 +555,7 @@ router.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mecha
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+ '/'+id_modifiable_mechanic.toString())       
     };
     var url = "https://"+options.host + options.path;

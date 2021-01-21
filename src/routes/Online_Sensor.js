@@ -64,7 +64,7 @@ RETRIEVE ONLINE_SENSORS:
 router.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next) =>{
     var id_online_sensor = req.params.id_online_sensor;
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor/'+id_online_sensor.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -92,7 +92,7 @@ router.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next) =>{
 router.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor_player/'+id_player.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -120,7 +120,7 @@ router.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,next)=>{
 //WORKS
 router.get('/sensors',jsonParser,  wrap(async(req,res,next)=>{
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensors')       
     };
     var url = "https://"+options.host + options.path;
@@ -158,7 +158,7 @@ CREATE ENDPOINTS:
 router.post('/sensor',jsonParser,  wrap(async(req,res,next)=>{
     var sensorData = req.body
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor')       
     };
     var url = "https://"+options.host + options.path;
@@ -186,7 +186,7 @@ router.post('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(as
     var tokens = (req.body.tokens)
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -227,7 +227,7 @@ router.put('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var newSensorData = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor/'+id_online_sensor.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -258,7 +258,7 @@ router.put('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(asy
     var data_body = req.body
 
      var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -300,7 +300,7 @@ router.delete('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor/'+id_online_sensor.toString())       
     };
     var url = "https://"+options.host + options.path;
@@ -329,7 +329,7 @@ router.delete('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
     };
     var url = "https://"+options.host + options.path;
