@@ -40,7 +40,7 @@ videogame_mechanic.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -68,7 +68,7 @@ videogame_mechanic.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,re
         host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -97,7 +97,7 @@ videogame_mechanic.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_v
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -127,7 +127,7 @@ videogame_mechanic.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifia
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString() + '/'+ id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -155,7 +155,7 @@ videogame_mechanic.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,re
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_all')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -182,7 +182,7 @@ videogame_mechanic.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
         host : '164.90.156.141:3007',
         path: ('/videogames')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -210,7 +210,7 @@ videogame_mechanic.get('/modifiable_mechanic_videogame_all',jsonParser,  wrap(as
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame_all')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -249,7 +249,7 @@ videogame_mechanic.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
         host : '164.90.156.141:3007',
         path: ('/videogame')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -275,7 +275,7 @@ videogame_mechanic.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,n
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -301,7 +301,7 @@ videogame_mechanic.post('/modifiable_mechanic_videogame',jsonParser,  wrap(async
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -346,7 +346,7 @@ videogame_mechanic.put('/videogame/:id_videogame',jsonParser,  wrap(async(req,re
         host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -376,7 +376,7 @@ videogame_mechanic.put('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -406,7 +406,7 @@ videogame_mechanic.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_v
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -436,7 +436,7 @@ videogame_mechanic.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifia
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+'/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -475,7 +475,7 @@ videogame_mechanic.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req
         host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -502,7 +502,7 @@ videogame_mechanic.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonPar
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -529,7 +529,7 @@ videogame_mechanic.delete('/modifiable_mechanic_videogame/:id_modifiable_mechani
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -558,7 +558,7 @@ videogame_mechanic.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modi
         host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+ '/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;

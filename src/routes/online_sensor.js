@@ -67,7 +67,7 @@ online_sensor.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,ne
         host : '164.90.156.141:3007',
         path: ('/sensor/'+id_online_sensor.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -95,7 +95,7 @@ online_sensor.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,ne
         host : '164.90.156.141:3007',
         path: ('/sensor_player/'+id_player.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -123,7 +123,7 @@ online_sensor.get('/sensors',jsonParser,  wrap(async(req,res,next)=>{
         host : '164.90.156.141:3007',
         path: ('/sensors')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -161,7 +161,7 @@ online_sensor.post('/sensor',jsonParser,  wrap(async(req,res,next)=>{
         host : '164.90.156.141:3007',
         path: ('/sensor')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -189,7 +189,7 @@ online_sensor.post('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  
         host : '164.90.156.141:3007',
         path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -230,7 +230,7 @@ online_sensor.put('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,ne
         host : '164.90.156.141:3007',
         path: ('/sensor/'+id_online_sensor.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -261,7 +261,7 @@ online_sensor.put('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  w
         host : '164.90.156.141:3007',
         path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -303,7 +303,7 @@ online_sensor.delete('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res
         host : '164.90.156.141:3007',
         path: ('/sensor/'+id_online_sensor.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -332,7 +332,7 @@ online_sensor.delete('/sensor_relation/:id_player/:id_online_sensor',jsonParser,
         host : '164.90.156.141:3007',
         path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
