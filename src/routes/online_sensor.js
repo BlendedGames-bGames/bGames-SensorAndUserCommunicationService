@@ -1,7 +1,8 @@
 const express = require('express');
-const router = express.Router();
+const online_sensor = express.Router();
 const axios = require('axios').default;
 var bodyParser =require('body-parser');
+import { testEnvironmentVariable } from '../settings';
 
 var jsonParser = bodyParser.json()
 
@@ -13,9 +14,8 @@ TODO: DELETE
 */
 
 
-router.get("/", (req,res) =>{
-    var variable = req.body
-    res.status(200).json(variable)
+online_sensor.get("/", (req,res) =>{
+    res.status(200).json({ message: testEnvironmentVariable})
 
 });
 
@@ -61,7 +61,7 @@ RETRIEVE ONLINE_SENSORS:
 
 //1) Obtener un online_sensor en particular 
 //WORKS
-router.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next) =>{
+online_sensor.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next) =>{
     var id_online_sensor = req.params.id_online_sensor;
     var options = {
         host : '164.90.156.141:3007',
@@ -89,7 +89,7 @@ router.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next) =>{
 }))
 //2) Obtener TODOS los online_sensors relacionados a un player
 //WORKS
-router.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var options = {
         host : '164.90.156.141:3007',
@@ -118,7 +118,7 @@ router.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,next)=>{
 
 //3) Obtener TODOS los online_sensors asociados a players de TODOS los players
 //WORKS
-router.get('/sensors',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.get('/sensors',jsonParser,  wrap(async(req,res,next)=>{
     var options = {
         host : '164.90.156.141:3007',
         path: ('/sensors')       
@@ -155,7 +155,7 @@ CREATE ENDPOINTS:
 
 //1)Crea un online_sensor 
 //WORKS
-router.post('/sensor',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.post('/sensor',jsonParser,  wrap(async(req,res,next)=>{
     var sensorData = req.body
     var options = {
         host : '164.90.156.141:3007',
@@ -180,7 +180,7 @@ router.post('/sensor',jsonParser,  wrap(async(req,res,next)=>{
 
 //2) Crea la relacion players_online_sensor
 //WORKS
-router.post('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.post('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player
     var id_online_sensor = req.params.id_online_sensor
     var tokens = (req.body.tokens)
@@ -221,7 +221,7 @@ CASCADE Y CASCADE
 
 //1) Modificar la info del sensor (name, description, base_url)
 //WORKS
-router.put('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.put('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
 
     var id_online_sensor = req.params.id_online_sensor
     var newSensorData = req.body
@@ -250,7 +250,7 @@ router.put('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
 
 //2) Modificar los tokens de la relacion players_online_sensor
 //WORKS
-router.put('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.put('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_player= req.params.id_player
 
     var id_online_sensor = req.params.id_online_sensor
@@ -294,7 +294,7 @@ NO ACTION Y CASCADE
 */
 //1) Borrar el online_sensor 
 //WORKS
-router.delete('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.delete('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
 
     var id_online_sensor = req.params.id_online_sensor
 
@@ -322,7 +322,7 @@ router.delete('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=
 }))
 //2) Borrar la relacion playerss_online_sensor (equivalente a 'desasociarse' de un sensor para un player)
 //WORKS
-router.delete('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+online_sensor.delete('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player
 
     var id_online_sensor = req.params.id_online_sensor
@@ -349,5 +349,5 @@ router.delete('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  wrap(
 
     } 
 }))
-module.exports = router;
+export default online_sensor;
 

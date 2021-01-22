@@ -1,15 +1,13 @@
 const express = require('express');
-const router = express.Router();
+const player_config = express.Router();
 
-
-var common = require('./extras');
 
 /*
 Input: Id of a player (range 0 to positive int)
 Output: Name, password and age of that player
 Description: Calls the b-Games-Configurationservice service to get the player's information
 */
-router.get('/getPlayerConfig/:id', (req,res,next)=>{
+player_config.get('/getPlayerConfig/:id', (req,res,next)=>{
     var post_data = req.body;
     const{id}= req.params;
     var options = {
@@ -36,7 +34,7 @@ Output: Void (Modifies the name, pass and age of a player)
 Description: Calls the b-Games-Configurationservice service to edit the player's information
 */
 //Faltan todos los verificadores de si cumple con los requerimientos o faltan datos!
-router.put('/getPlayerConfig/edit/:id', (req,res,next)=>{
+player_config.put('/getPlayerConfig/edit/:id', (req,res,next)=>{
     //var headersIN = req.body;
     const headersIN = JSON.stringify(req.body);
 
@@ -87,7 +85,7 @@ Input: Nothing
 Output: List of all the players of Blended Games
 Description: Simple MYSQL query
 */
-router.get('/players/',(req,res)=>{
+player_config.get('/players/',(req,res)=>{
     var aux = undefined;
     mysqlConnection.query('SELECT*FROM playerss',(err,rows,fields)=>{
         try{
@@ -106,7 +104,7 @@ router.get('/players/',(req,res)=>{
         }
     })
 })
-router.get('/players/id',(req,res)=>{
+player_config.get('/players/id',(req,res)=>{
     var aux = undefined;
     mysqlConnection.query('SELECT id_players FROM playerss',(err,rows,fields)=>{
         try{
@@ -130,7 +128,7 @@ Input: Id of a player (range 0 to positive int)
 Output: Name, pass and age of that player
 Description: Simple MYSQL query
 */
-router.get('/players/:id', (req,res) =>{
+player_config.get('/players/:id', (req,res) =>{
     const {id} = req.params;
     console.log("entro en el GET");
     var aux = undefined;
@@ -157,7 +155,7 @@ Input: Id of a player (range 0 to positive int)
 Output: Void (authentication of the player in the system)
 Description: Simple MYSQL query
 */
-router.get('/player/:name/:pass', (req,res) =>{
+player_config.get('/player/:name/:pass', (req,res) =>{
     var aux = undefined;
     const name = req.params.name
     const pass = req.params.pass
@@ -191,7 +189,7 @@ Input: Name, pass and age of that player
 Output: Void (Creates a new player with the input information)
 Description: Simple MYSQL query
 */
-router.post('/players/',(req,res)=>{
+player_config.post('/players/',(req,res)=>{
     const {name,pass,age} = req.body;
     console.log(req.body);
     const id = 0;
@@ -228,7 +226,7 @@ Output: Void (Edits an existing player in the db)
 Description: Simple MYSQL query
 */
 //Con id en 0 se ingresa un nuevo jugador, con cualquier otro id se edita el existente
-router.put('/players/:id',(req,res)=>{
+player_config.put('/players/:id',(req,res)=>{
     console.log("entro en el PUT");
     const {name,pass,age} = req.body;
     const {id} = req.params;
@@ -267,7 +265,7 @@ Input: Id of a player (range 0 to positive int)
 Output: Void (Deletes the player of the database)
 Description: Simple MYSQL query
 */
-router.delete('/players/:id',(req,res)=>{
+player_config.delete('/players/:id',(req,res)=>{
     const {id} = req.params;
     mysqlConnection.query('DELETE FROM playerss WHERE id_players =?',[id],(err,rows,fields)=>{
         if(!err){
@@ -278,4 +276,4 @@ router.delete('/players/:id',(req,res)=>{
     })
 })
 
-module.exports = router;
+export default player_config;

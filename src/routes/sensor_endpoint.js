@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const sensor_endpoint = express.Router();
 const axios = require('axios').default;
 var bodyParser =require('body-parser');
 
@@ -130,7 +130,7 @@ WHERE
 //1) Obtener UN sensor_endpoint en particular relacionado a un player y online_sensor
 
 //WORKS
-router.get('/sensor_endpoint/:id_player/:id_online_sensor/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoint/:id_player/:id_online_sensor/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var id_online_sensor = req.params.id_online_sensor;
     var id_sensor_endpoint = req.params.id_sensor_endpoint;
@@ -162,7 +162,7 @@ router.get('/sensor_endpoint/:id_player/:id_online_sensor/:id_sensor_endpoint',j
 
 //2) Obtener TODOS los sensor_endpoint (activated y desactivated) relacionados a un player y online_sensor
 //WORKS
-router.get('/sensor_endpoints/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var id_online_sensor = req.params.id_online_sensor;
 
@@ -193,7 +193,7 @@ router.get('/sensor_endpoints/:id_player/:id_online_sensor',jsonParser,  wrap(as
 //3) Obtener TODOS los sensor_endpoint (activated) relacionados a un player y online_sensor
 //WORKS
 
-router.get('/sensor_endpoints_activated/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints_activated/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var id_online_sensor = req.params.id_online_sensor;
 
@@ -224,7 +224,7 @@ router.get('/sensor_endpoints_activated/:id_player/:id_online_sensor',jsonParser
 //4) Obtener TODOS los sensor_endpoint (desactivated) relacionados a un player y online_sensor
 //WORKS
 
-router.get('/sensor_endpoints_deactivated/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var id_online_sensor = req.params.id_online_sensor;
 
@@ -257,7 +257,7 @@ router.get('/sensor_endpoints_deactivated/:id_player/:id_online_sensor',jsonPars
 
 //WORKS
 
-router.get('/sensor_endpoints/:id_player',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var options = {
         host : '164.90.156.141:3007',
@@ -285,7 +285,7 @@ router.get('/sensor_endpoints/:id_player',jsonParser,  wrap(async(req,res,next)=
 //6) Obtener TODOS los sensor_endpoint de un player en particular (activated)(tomando en cuenta todos los online_sensor que tiene)
 
 //WORKS
-router.get('/sensor_endpoints_activated/:id_player',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints_activated/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
 
     var options = {
@@ -314,7 +314,7 @@ router.get('/sensor_endpoints_activated/:id_player',jsonParser,  wrap(async(req,
 //7) Obtener TODOS los sensor_endpoint de un player en particular (deactivated)(tomando en cuenta todos los online_sensor que tiene)
 
 //WORKS
-router.get('/sensor_endpoints_deactivated/:id_player',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var options = {
         host : '164.90.156.141:3007',
@@ -342,7 +342,7 @@ router.get('/sensor_endpoints_deactivated/:id_player',jsonParser,  wrap(async(re
 
 //8) Obtener TODOS los sensor_endpoint relacionados a un online_sensor (activated y deactivated)(sin importar de que players son)
 //WORKS
-router.get('/online_sensor/:id_online_sensor/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
 
     var options = {
@@ -370,7 +370,7 @@ router.get('/online_sensor/:id_online_sensor/sensor_endpoints',jsonParser,  wrap
 }))
 //9) Obtener TODOS los sensor_endpoint relacionados a un online_sensor (activated)(sin importar de que players son)
 //WORKS
-router.get('/online_sensor/:id_online_sensor/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
 
     
@@ -399,7 +399,7 @@ router.get('/online_sensor/:id_online_sensor/sensor_endpoints_activated',jsonPar
 }))
 //10) Obtener TODOS los sensor_endpoint relacionados a un online_sensor (deactivated)(sin importar de que players son)
 //WORKS
-router.get('/online_sensor/:id_online_sensor/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
 
    
@@ -430,7 +430,7 @@ router.get('/online_sensor/:id_online_sensor/sensor_endpoints_deactivated',jsonP
 //11) Obtener TODOS los sensor_endpoints (activated y deactivated) de TODOS los players
 /* WORKS */
 
-router.get('/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
   
    
     var options = {
@@ -460,7 +460,7 @@ router.get('/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
 //12) Obtener TODOS los sensor_endpoints (activated) de TODOS los players
 /* WORKS */
 
-router.get('/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>{
     var options = {
         host : '164.90.156.141:3007',
         path: ('/sensor_endpoints_activated')       
@@ -490,7 +490,7 @@ router.get('/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>
 /* WORKS */
 
 
-router.get('/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.get('/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,res,next)=>{
     var options = {
         host : '164.90.156.141:3007',
         path: ('/sensor_endpoints_deactivated')       
@@ -534,7 +534,7 @@ CREATE ENDPOINTS:
 
 //1)Crea asociacion de un jugador a un sensor_endpoint en especifico
 
-router.post('/sensor_endpoint/:id_player/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.post('/sensor_endpoint/:id_player/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var id_sensor_endpoint = req.params.id_sensor_endpoint;
     var sensor_endpoint_data = req.body
@@ -562,7 +562,7 @@ router.post('/sensor_endpoint/:id_player/:id_sensor_endpoint',jsonParser,  wrap(
 
 //2)Crea un sensor_endpoint template 
 
-router.post('/sensor_endpoint/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.post('/sensor_endpoint/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
 
     var sensor_endpoint_data = req.body
@@ -603,7 +603,7 @@ UPDATE ENDPOINTS:
 */
 //1) Modificar la info del sensor endpoint asociado a un player
 
-router.put('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.put('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
     var id_players = req.params.id_players
     var id_sensor_endpoint = req.params.id_sensor_endpoint
 
@@ -633,7 +633,7 @@ router.put('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParser,  wrap(
 }))
 //2) Modificar la info del sensor endpoint template 
 
-router.put('/sensor_endpoint/:id_online_sensor/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.put('/sensor_endpoint/:id_online_sensor/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor
     var id_sensor_endpoint = req.params.id_sensor_endpoint
 
@@ -667,7 +667,7 @@ DELETE ENDPOINTS:
 Causa: No existen repercusiones a otras tablas actualmente
 */
 
-router.delete('/sensor_endpoint/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.delete('/sensor_endpoint/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
 
     var id_sensor_endpoint = req.params.id_sensor_endpoint
 
@@ -698,7 +698,7 @@ router.delete('/sensor_endpoint/:id_sensor_endpoint',jsonParser,  wrap(async(req
 Causa: No existen repercusiones a otras tablas actualmente
 */
 
-router.delete('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
+sensor_endpoint.delete('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParser,  wrap(async(req,res,next)=>{
     var id_players = req.params.id_players
 
     var id_sensor_endpoint = req.params.id_sensor_endpoint
@@ -729,5 +729,5 @@ router.delete('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParser,  wr
 
 
 
-module.exports = router;
+export default sensor_endpoint;
 
