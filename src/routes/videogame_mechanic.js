@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const videogame_mechanic = express.Router();
 const axios = require('axios').default;
 var bodyParser =require('body-parser');
 
@@ -33,14 +33,14 @@ RETRIEVE MODIFIABLE_MECHANIC:
 
 //1) Obtener UN modifiable_mechanic en particular 
 //WORKS
-router.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -61,14 +61,14 @@ router.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(asyn
 }))
 //2) Obtener UN videojuego en especial 
 //WORKS
-router.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -90,14 +90,14 @@ router.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
 
 //3) Obtener UNA la relacion videojuegos y mecanicas en particular dado id
 //WORKS
-router.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -119,15 +119,15 @@ router.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',js
 
 //4) Obtener UNA la relacion videojuegos y mecanicas en particular dado videogame y modifiable mechanic
 //WORKS
-router.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame;
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString() + '/'+ id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -149,13 +149,13 @@ router.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic
 
 //5) Obtener TODOS los modifiable_mechanic 
 //WORKS
-router.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_all')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -176,13 +176,13 @@ router.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,res,next)=>{
 }))
 //6) Obtener TODOS los videojuegos 
 //WORKS
-router.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogames')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -204,13 +204,13 @@ router.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 
 //7) Obtener TODAS las relaciones videojuegos y mecanicas
 //WORKS
-router.get('/modifiable_mechanic_videogame_all',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.get('/modifiable_mechanic_videogame_all',jsonParser,  wrap(async(req,res,next)=>{
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame_all')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -242,14 +242,14 @@ CREATE ENDPOINTS:
 
 //1)Crea un online_sensor 
 //WORKS
-router.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
     var videogame_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -268,14 +268,14 @@ router.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
 
 //2) Crear una modifiable_mechanic template 
 //WORKS
-router.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var modifiable_mechanic_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -294,14 +294,14 @@ router.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
 
 //3) Crear una relacion relaciones videojuegos y mecanicas
 //WORKS
-router.post('/modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.post('/modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var modifiable_mechanic_videogame_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -336,17 +336,17 @@ CASCADE Y CASCADE
 
 //1) Modificar la info de un videogame 
 //WORKS
-router.put('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.put('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
 
     var id_videogame = req.params.id_videogame
     var videogame_data = req.body
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -366,17 +366,17 @@ router.put('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
 
 //2) Modificar la info de un modifiable_mechanic 
 //WORKS
-router.put('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.put('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic= req.params.id_modifiable_mechanic
 
     var modifiable_mechanic_data = req.body
 
     
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -396,17 +396,17 @@ router.put('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(asyn
 
 //3) Modificar una relacion videogame mechanic dado su id
 //WORKS
-router.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame
 
     var relation_data = req.body
 
     
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -426,17 +426,17 @@ router.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',js
 
 //4) Modificar una relacion videogame mechanic dado id_modifiable_mechanic y id_videogame
 //WORKS
-router.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
     var relation_data = req.body
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+'/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -467,15 +467,15 @@ DELETE ENDPOINTS:
 */
 //1) Borrar el videogame 
 //WORKS
-router.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
 
     var id_videogame = req.params.id_videogame
     
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/videogame/'+id_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -494,15 +494,15 @@ router.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>
 }))
 //2) Borrar la mecanica 
 //WORKS
-router.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -522,14 +522,14 @@ router.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(a
 
 //3) Borrar la relacion videogame y mecanica dado su id
 //WORKS
-router.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -549,16 +549,16 @@ router.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame'
 
 // 4) Borrar la relacion videogame y mecanica dados sus llaves foraneas id videogame y modifiable_mechanic
 //WORKS
-router.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
+videogame_mechanic.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+ '/'+id_modifiable_mechanic.toString())       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -577,5 +577,5 @@ router.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modifiable_mecha
 }))
 
 
-module.exports = router;
+export default videogame_mechanic;
 
