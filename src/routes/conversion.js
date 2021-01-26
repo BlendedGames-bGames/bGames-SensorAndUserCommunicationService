@@ -213,7 +213,7 @@ conversion.put('/conversion/:id_conversion',jsonParser,  wrap(async(req,res,next
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.put(MEDIUM_PUT_URL,new_conversion_data);
+        const response = await axios.put(MEDIUM_PUT_URL,new_conversion_data);
         console.log(response)
         res.status(200).json(response.data)
 
@@ -242,7 +242,7 @@ conversion.put('/modifiable_conversion_attribute/:id_attributes/:id_conversion/:
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.put(MEDIUM_PUT_URL,relation_body);
+        const response = await axios.put(MEDIUM_PUT_URL,relation_body);
         console.log(response)
         res.status(200).json(response.data)
 

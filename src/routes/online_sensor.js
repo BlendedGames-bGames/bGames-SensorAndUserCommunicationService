@@ -228,7 +228,7 @@ online_sensor.put('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,ne
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.put(MEDIUM_PUT_URL,newSensorData);
+        const response = await axios.put(MEDIUM_PUT_URL,newSensorData);
         console.log(response)
         res.status(200).json(response.data)
 

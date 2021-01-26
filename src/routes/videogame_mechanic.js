@@ -498,7 +498,7 @@ videogame_mechanic.delete('/modifiable_mechanic_videogame/:id_modifiable_mechani
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
-        const response = axios.delete(MEDIUM_PUT_URL);
+        const response = await axios.delete(MEDIUM_PUT_URL);
         console.log(response)
         res.status(200).json({response: response.data })
 
