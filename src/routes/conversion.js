@@ -104,7 +104,7 @@ conversion.get('/conversion/:id_conversion',jsonParser,  wrap(async(req,res,next
 
 //1) Obtener TODAS las conversion en particular 
 //WORKS
-conversion.get('/conversions_all',(res,next)=>{
+conversion.get('/conversions_all',jsonParser,  wrap(async(req,res,next)=>{
     var path ='/conversions_all'    
     
     var url = "http://"+sensorHost + path;
@@ -125,7 +125,7 @@ conversion.get('/conversions_all',(res,next)=>{
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
-})
+}))
 
 //3) Obtener TODOS las conversiones relacionados a un sensor_endpoint y los parametros que cambiaron
 /*
