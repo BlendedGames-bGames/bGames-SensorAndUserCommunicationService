@@ -462,7 +462,7 @@ sensor_endpoint.get('/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
 
 sensor_endpoint.get('/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>{
     var options = {
-        host : '164.90.156.141:3007',
+        host : 'bgames-SensorManagementService:3007',
         path: ('/sensor_endpoints_activated')       
     };
     var url = "http://"+options.host + options.path;
