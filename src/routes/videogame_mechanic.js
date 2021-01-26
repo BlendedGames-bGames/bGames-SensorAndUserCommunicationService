@@ -6,6 +6,7 @@ var bodyParser =require('body-parser');
 var jsonParser = bodyParser.json()
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
+const sensorHost = "bgames-SensorManagementService:3007"
 
 /* 
 CRUD de videogames, mechanics y su relacion
@@ -36,11 +37,9 @@ RETRIEVE MODIFIABLE_MECHANIC:
 videogame_mechanic.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic/'+id_modifiable_mechanic.toString()      
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -50,7 +49,7 @@ videogame_mechanic.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -64,11 +63,9 @@ videogame_mechanic.get('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser
 videogame_mechanic.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_videogame = req.params.id_videogame;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/videogame/'+id_videogame.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/videogame/'+id_videogame.toString()       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -78,7 +75,7 @@ videogame_mechanic.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,re
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -93,11 +90,9 @@ videogame_mechanic.get('/videogame/:id_videogame',jsonParser,  wrap(async(req,re
 videogame_mechanic.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var path ='/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString()       
+
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -107,7 +102,7 @@ videogame_mechanic.get('/modifiable_mechanic_videogame/:id_modifiable_mechanic_v
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -123,11 +118,9 @@ videogame_mechanic.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifia
     var id_videogame = req.params.id_videogame;
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame/'+id_videogame.toString() + '/'+ id_modifiable_mechanic.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic_videogame/'+id_videogame.toString() + '/'+ id_modifiable_mechanic.toString()       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -137,7 +130,7 @@ videogame_mechanic.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifia
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -151,11 +144,9 @@ videogame_mechanic.get('/modifiable_mechanic_videogame/:id_videogame/:id_modifia
 //WORKS
 videogame_mechanic.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,res,next)=>{
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_all')       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic_all'    
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -165,7 +156,7 @@ videogame_mechanic.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,re
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -178,11 +169,9 @@ videogame_mechanic.get('/modifiable_mechanic_all',jsonParser,  wrap(async(req,re
 //WORKS
 videogame_mechanic.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/videogames')       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/videogames'       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -192,7 +181,7 @@ videogame_mechanic.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -206,11 +195,9 @@ videogame_mechanic.get('/videogames',jsonParser,  wrap(async(req,res,next)=>{
 //WORKS
 videogame_mechanic.get('/modifiable_mechanic_videogame_all',jsonParser,  wrap(async(req,res,next)=>{
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame_all')       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic_videogame_all'       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -220,7 +207,7 @@ videogame_mechanic.get('/modifiable_mechanic_videogame_all',jsonParser,  wrap(as
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -245,18 +232,16 @@ CREATE ENDPOINTS:
 videogame_mechanic.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
     var videogame_data = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/videogame')       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/videogame'       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
     try {
        
         const response = await axios.post(MEDIUM_POST_URL, videogame_data);
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -271,18 +256,17 @@ videogame_mechanic.post('/videogame',jsonParser,  wrap(async(req,res,next)=>{
 videogame_mechanic.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var modifiable_mechanic_data = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic')       
-    };
-    var url = "http://"+options.host + options.path;
+ 
+        var path ='/modifiable_mechanic'       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
     try {
        
         const response = await axios.post(MEDIUM_POST_URL, modifiable_mechanic_data);
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -297,18 +281,16 @@ videogame_mechanic.post('/modifiable_mechanic',jsonParser,  wrap(async(req,res,n
 videogame_mechanic.post('/modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var modifiable_mechanic_videogame_data = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame')       
-    };
-    var url = "http://"+options.host + options.path;
+    var path ='/modifiable_mechanic_videogame'       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
     try {
        
         const response = await axios.post(MEDIUM_POST_URL, modifiable_mechanic_videogame_data);
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -341,12 +323,9 @@ videogame_mechanic.put('/videogame/:id_videogame',jsonParser,  wrap(async(req,re
     var id_videogame = req.params.id_videogame
     var videogame_data = req.body
 
-
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/videogame/'+id_videogame.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var path ='/videogame/'+id_videogame.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -371,12 +350,9 @@ videogame_mechanic.put('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser
 
     var modifiable_mechanic_data = req.body
 
+        var path ='/modifiable_mechanic/'+id_modifiable_mechanic.toString()       
     
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -401,12 +377,9 @@ videogame_mechanic.put('/modifiable_mechanic_videogame/:id_modifiable_mechanic_v
 
     var relation_data = req.body
 
+        var path ='/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString()       
     
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -432,11 +405,9 @@ videogame_mechanic.put('/modifiable_mechanic_videogame/:id_videogame/:id_modifia
 
     var relation_data = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+'/'+id_modifiable_mechanic.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic_videogame/'+id_videogame.toString()+'/'+id_modifiable_mechanic.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -471,11 +442,9 @@ videogame_mechanic.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req
 
     var id_videogame = req.params.id_videogame
     
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/videogame/'+id_videogame.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/videogame/'+id_videogame.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -497,12 +466,9 @@ videogame_mechanic.delete('/videogame/:id_videogame',jsonParser,  wrap(async(req
 videogame_mechanic.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
-
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic/'+id_modifiable_mechanic.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic/'+id_modifiable_mechanic.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -525,11 +491,9 @@ videogame_mechanic.delete('/modifiable_mechanic/:id_modifiable_mechanic',jsonPar
 videogame_mechanic.delete('/modifiable_mechanic_videogame/:id_modifiable_mechanic_videogame',jsonParser,  wrap(async(req,res,next)=>{
     var id_modifiable_mechanic_videogame = req.params.id_modifiable_mechanic_videogame
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic_videogame/'+id_modifiable_mechanic_videogame.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -553,12 +517,9 @@ videogame_mechanic.delete('/modifiable_mechanic_videogame/:id_videogame/:id_modi
     var id_videogame = req.params.id_videogame
     var id_modifiable_mechanic = req.params.id_modifiable_mechanic
 
-
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/modifiable_mechanic_videogame/'+id_videogame.toString()+ '/'+id_modifiable_mechanic.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/modifiable_mechanic_videogame/'+id_videogame.toString()+ '/'+id_modifiable_mechanic.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;

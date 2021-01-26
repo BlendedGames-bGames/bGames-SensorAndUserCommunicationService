@@ -5,6 +5,7 @@ var bodyParser =require('body-parser');
 import { testEnvironmentVariable } from '../settings';
 
 var jsonParser = bodyParser.json()
+const sensorHost = "bgames-SensorManagementService:3007"
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 /*
@@ -63,11 +64,10 @@ RETRIEVE ONLINE_SENSORS:
 //WORKS
 online_sensor.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,next) =>{
     var id_online_sensor = req.params.id_online_sensor;
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+
+        var path ='/sensor/'+id_online_sensor.toString()       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -77,7 +77,7 @@ online_sensor.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,ne
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -91,11 +91,10 @@ online_sensor.get('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,ne
 //WORKS
 online_sensor.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_player/'+id_player.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    
+        var path ='/sensor_player/'+id_player.toString()       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -105,7 +104,7 @@ online_sensor.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,ne
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -119,11 +118,10 @@ online_sensor.get('/sensor_player/:id_player',jsonParser,  wrap(async(req,res,ne
 //3) Obtener TODOS los online_sensors asociados a players de TODOS los players
 //WORKS
 online_sensor.get('/sensors',jsonParser,  wrap(async(req,res,next)=>{
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensors')       
-    };
-    var url = "http://"+options.host + options.path;
+    
+        var path ='/sensors'       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -133,7 +131,7 @@ online_sensor.get('/sensors',jsonParser,  wrap(async(req,res,next)=>{
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -157,18 +155,17 @@ CREATE ENDPOINTS:
 //WORKS
 online_sensor.post('/sensor',jsonParser,  wrap(async(req,res,next)=>{
     var sensorData = req.body
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor')       
-    };
-    var url = "http://"+options.host + options.path;
+   
+        var path ='/sensor'       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
     try {
        
         const response = await axios.post(MEDIUM_POST_URL, sensorData);
-        res.status(200).json({ message: 'Gasto listo', response: response })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -185,18 +182,16 @@ online_sensor.post('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  
     var id_online_sensor = req.params.id_online_sensor
     var tokens = (req.body.tokens)
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
     try {
        
         const response = await axios.post(MEDIUM_POST_URL, tokens);
-        res.status(200).json({ message: 'Gasto listo', response: response })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -226,18 +221,16 @@ online_sensor.put('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res,ne
     var id_online_sensor = req.params.id_online_sensor
     var newSensorData = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/sensor/'+id_online_sensor.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
         const response = axios.put(MEDIUM_PUT_URL,newSensorData);
         console.log(response)
-        res.status(200).json({response: response.data })
+        res.status(200).json(response.data)
 
         
     } 
@@ -257,18 +250,16 @@ online_sensor.put('/sensor_relation/:id_player/:id_online_sensor',jsonParser,  w
 
     var data_body = req.body
 
-     var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
         const response = axios.put(MEDIUM_PUT_URL,data_body);
         console.log(response)
-        res.status(200).json({response: response.data })
+        res.status(200).json(response.data)
 
         
     } 
@@ -298,19 +289,16 @@ online_sensor.delete('/sensor/:id_online_sensor',jsonParser,  wrap(async(req,res
 
     var id_online_sensor = req.params.id_online_sensor
 
-
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/sensor/'+id_online_sensor.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
         const response = await axios.delete(MEDIUM_PUT_URL);
         console.log(response)
-        res.status(200).json({response: response.data })
+        res.status(200).json(response.data)
 
         
     } 
@@ -327,19 +315,16 @@ online_sensor.delete('/sensor_relation/:id_player/:id_online_sensor',jsonParser,
 
     var id_online_sensor = req.params.id_online_sensor
 
-
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path ='/sensor_relation/'+id_player.toString()+'/'+id_online_sensor.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
     try {
         const response = await axios.delete(MEDIUM_PUT_URL);
         console.log(response)
-        res.status(200).json({response: response.data })
+        res.status(200).json(response.data)
 
         
     } 

@@ -6,7 +6,7 @@ var bodyParser =require('body-parser');
 var jsonParser = bodyParser.json()
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
-
+const sensorHost = "bgames-SensorManagementService:3007"
 
 /* Ejemplo de Json del online sensor
     {
@@ -135,11 +135,9 @@ sensor_endpoint.get('/sensor_endpoint/:id_player/:id_online_sensor/:id_sensor_en
     var id_online_sensor = req.params.id_online_sensor;
     var id_sensor_endpoint = req.params.id_sensor_endpoint;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_player.toString()+'/'+id_online_sensor.toString+'/'+id_sensor_endpoint.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var path = '/sensor_endpoint/'+id_player.toString()+'/'+id_online_sensor.toString+'/'+id_sensor_endpoint.toString()      
+   
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -149,7 +147,7 @@ sensor_endpoint.get('/sensor_endpoint/:id_player/:id_online_sensor/:id_sensor_en
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -165,12 +163,8 @@ sensor_endpoint.get('/sensor_endpoint/:id_player/:id_online_sensor/:id_sensor_en
 sensor_endpoint.get('/sensor_endpoints/:id_player/:id_online_sensor',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     var id_online_sensor = req.params.id_online_sensor;
-
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_player.toString()+'/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var path = '/sensor_endpoint/'+id_player.toString()+'/'+id_online_sensor.toString()   
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -180,7 +174,7 @@ sensor_endpoint.get('/sensor_endpoints/:id_player/:id_online_sensor',jsonParser,
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -197,11 +191,8 @@ sensor_endpoint.get('/sensor_endpoints_activated/:id_player/:id_online_sensor',j
     var id_player = req.params.id_player;
     var id_online_sensor = req.params.id_online_sensor;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoints_activated/'+id_player.toString()+'/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var path = '/sensor_endpoints_activated/'+id_player.toString()+'/'+id_online_sensor.toString()
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -211,7 +202,7 @@ sensor_endpoint.get('/sensor_endpoints_activated/:id_player/:id_online_sensor',j
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -229,11 +220,10 @@ sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player/:id_online_sensor'
     var id_online_sensor = req.params.id_online_sensor;
 
     
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoints_deactivated/'+id_player.toString()+'/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+   
+    var path = '/sensor_endpoints_deactivated/'+id_player.toString()+'/'+id_online_sensor.toString()
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -243,7 +233,7 @@ sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player/:id_online_sensor'
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -259,11 +249,8 @@ sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player/:id_online_sensor'
 
 sensor_endpoint.get('/sensor_endpoints/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoints/'+id_player.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    var path = '/sensor_endpoints/'+id_player.toString()       
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -273,7 +260,7 @@ sensor_endpoint.get('/sensor_endpoints/:id_player',jsonParser,  wrap(async(req,r
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -288,11 +275,9 @@ sensor_endpoint.get('/sensor_endpoints/:id_player',jsonParser,  wrap(async(req,r
 sensor_endpoint.get('/sensor_endpoints_activated/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoints_activated/'+id_player.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path = '/sensor_endpoints_activated/'+id_player.toString()       
+
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -302,7 +287,7 @@ sensor_endpoint.get('/sensor_endpoints_activated/:id_player',jsonParser,  wrap(a
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -316,11 +301,10 @@ sensor_endpoint.get('/sensor_endpoints_activated/:id_player',jsonParser,  wrap(a
 //WORKS
 sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoints_deactivated/'+id_player.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+    
+    var path ='/sensor_endpoints_deactivated/'+id_player.toString()
+  
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -330,7 +314,7 @@ sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player',jsonParser,  wrap
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -345,11 +329,10 @@ sensor_endpoint.get('/sensor_endpoints_deactivated/:id_player',jsonParser,  wrap
 sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints')       
-    };
-    var url = "http://"+options.host + options.path;
+   
+    var path = '/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints'       
+ 
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -359,7 +342,7 @@ sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints',jsonPars
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -372,13 +355,9 @@ sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints',jsonPars
 //WORKS
 sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
-
+    var path = '/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints_activated'       
     
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints_activated')       
-    };
-    var url = "http://"+options.host + options.path;
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -388,7 +367,7 @@ sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_activated
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -402,12 +381,9 @@ sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_activated
 sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
 
-   
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints_deactivated')       
-    };
-    var url = "http://"+options.host + options.path;
+        var path = '/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints_deactivated'       
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -417,7 +393,7 @@ sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_deactivat
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -432,12 +408,9 @@ sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_deactivat
 
 sensor_endpoint.get('/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
   
-   
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoints')       
-    };
-    var url = "http://"+options.host + options.path;
+    var path = '/sensor_endpoints'
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -447,7 +420,7 @@ sensor_endpoint.get('/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -461,11 +434,10 @@ sensor_endpoint.get('/sensor_endpoints',jsonParser,  wrap(async(req,res,next)=>{
 /* WORKS */
 
 sensor_endpoint.get('/sensor_endpoints_activated',jsonParser,  wrap(async(req,res,next)=>{
-    var options = {
-        host : 'bgames-SensorManagementService:3007',
-        path: ('/sensor_endpoints_activated')       
-    };
-    var url = "http://"+options.host + options.path;
+   
+    var path = '/sensor_endpoints_activated'      
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -475,7 +447,7 @@ sensor_endpoint.get('/sensor_endpoints_activated',jsonParser,  wrap(async(req,re
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -491,11 +463,10 @@ sensor_endpoint.get('/sensor_endpoints_activated',jsonParser,  wrap(async(req,re
 
 
 sensor_endpoint.get('/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,res,next)=>{
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoints_deactivated')       
-    };
-    var url = "http://"+options.host + options.path;
+    
+    var path = '/sensor_endpoints_deactivated'     
+    
+    var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -505,7 +476,7 @@ sensor_endpoint.get('/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers})
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -539,18 +510,15 @@ sensor_endpoint.post('/sensor_endpoint/:id_player/:id_sensor_endpoint',jsonParse
     var id_sensor_endpoint = req.params.id_sensor_endpoint;
     var sensor_endpoint_data = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_player.toString()+'/'+id_sensor_endpoint.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path = '/sensor_endpoint/'+id_player.toString()+'/'+id_sensor_endpoint.toString()      
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
     try {
        
         const response = await axios.post(MEDIUM_POST_URL, sensor_endpoint_data);
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -566,18 +534,17 @@ sensor_endpoint.post('/sensor_endpoint/:id_online_sensor',jsonParser,  wrap(asyn
     var id_online_sensor = req.params.id_online_sensor;
 
     var sensor_endpoint_data = req.body
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_online_sensor.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+  
+        var path = '/sensor_endpoint/'+id_online_sensor.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
     try {
        
         const response = await axios.post(MEDIUM_POST_URL, sensor_endpoint_data);
-        res.status(200).json({ response: response.data })
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
@@ -609,11 +576,9 @@ sensor_endpoint.put('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParse
 
     var sensor_endpoint_data = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_players.toString()+'/id_sensor_endpoint/'+id_sensor_endpoint.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path = '/sensor_endpoint/'+id_players.toString()+'/id_sensor_endpoint/'+id_sensor_endpoint.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -639,11 +604,9 @@ sensor_endpoint.put('/sensor_endpoint/:id_online_sensor/:id_sensor_endpoint',jso
 
     var sensor_endpoint_data = req.body
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_online_sensor.toString()+'/'+id_sensor_endpoint.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path = '/sensor_endpoint/'+id_online_sensor.toString()+'/'+id_sensor_endpoint.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -671,12 +634,9 @@ sensor_endpoint.delete('/sensor_endpoint/:id_sensor_endpoint',jsonParser,  wrap(
 
     var id_sensor_endpoint = req.params.id_sensor_endpoint
 
-
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_sensor_endpoint.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+        var path = '/sensor_endpoint/'+id_sensor_endpoint.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -703,11 +663,10 @@ sensor_endpoint.delete('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonPa
 
     var id_sensor_endpoint = req.params.id_sensor_endpoint
 
-    var options = {
-        host : '164.90.156.141:3007',
-        path: ('/sensor_endpoint/'+id_players.toString()+'/'+id_sensor_endpoint.toString())       
-    };
-    var url = "http://"+options.host + options.path;
+   
+    var path = '/sensor_endpoint/'+id_players.toString()+'/'+id_sensor_endpoint.toString()       
+    
+    var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
