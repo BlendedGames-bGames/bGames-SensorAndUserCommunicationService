@@ -4,6 +4,7 @@ const userHost = "bgames-UserManagementService:3010"
 const cryptoRandomString = require('crypto-random-string');
 var bodyParser =require('body-parser');
 var jsonParser = bodyParser.json()
+const axios = require('axios').default;
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 /*
@@ -61,6 +62,33 @@ player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,r
     }
 }))
 
+player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res,next)=>{
+    var email = req.body.email;
+    var password = req.body.password;
+    var desktop_key = req.body.key;
+    var provider = req.body.provider;
+
+    var path = '/create_desktop_key/'+id_player.toString()
+    var url = "http://"+userHost + path;
+    const MEDIUM_POST_URL = url;
+    
+    let key = createKey()
+    console.log(key)
+    const data = {
+        "key": key
+    }
+
+    try {
+        const response = await axios.post(MEDIUM_POST_URL,data)
+        res.status(200).json(response)
+        
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
+
+    }
+}))
 /*
 Input: Id of a player (range 0 to positive int)
 Output: Void (Modifies the name, pass and age of a player)
