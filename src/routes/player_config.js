@@ -41,10 +41,14 @@ player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,r
     const MEDIUM_POST_URL = url;
     
     let key = createKey()
+    console.log(key)
+    const data = {
+        "key": key
+    }
 
     try {
-        const response = await axios.post(MEDIUM_POST_URL,key)
-        res.status(200).json(response.data)
+        const response = await axios.post(MEDIUM_POST_URL,data)
+        res.status(200).json(response)
         
     } 
     catch (error) {
