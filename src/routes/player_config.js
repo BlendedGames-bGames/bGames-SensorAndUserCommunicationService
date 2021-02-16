@@ -2,7 +2,10 @@ const express = require('express');
 const player_config = express.Router();
 const userHost = "bgames-UserManagementService:3010"
 const cryptoRandomString = require('crypto-random-string');
+var bodyParser =require('body-parser');
+var jsonParser = bodyParser.json()
 
+const wrap = fn => (...args) => fn(...args).catch(args[2])
 /*
 Input: Id of a player (range 0 to positive int)
 Output: Name, password and age of that player
