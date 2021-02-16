@@ -275,7 +275,7 @@ sensor_endpoint.get('/sensor_endpoints/:id_player',jsonParser,  wrap(async(req,r
 sensor_endpoint.get('/sensor_endpoints_activated/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
 
-        var path = '/sensor_endpoints_activated/'+id_player.toString()       
+    var path = '/sensor_endpoints_activated/'+id_player.toString()       
 
     var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
@@ -381,7 +381,7 @@ sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_activated
 sensor_endpoint.get('/online_sensor/:id_online_sensor/sensor_endpoints_deactivated',jsonParser,  wrap(async(req,res,next)=>{
     var id_online_sensor = req.params.id_online_sensor;
 
-        var path = '/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints_deactivated'       
+    var path = '/online_sensor/'+id_online_sensor.toString()+'/sensor_endpoints_deactivated'       
     
     var url = "http://"+sensorHost + path;
     const MEDIUM_GET_URL = url;
@@ -510,7 +510,7 @@ sensor_endpoint.post('/sensor_endpoint/:id_player/:id_sensor_endpoint',jsonParse
     var id_sensor_endpoint = req.params.id_sensor_endpoint;
     var sensor_endpoint_data = req.body
 
-        var path = '/sensor_endpoint/'+id_player.toString()+'/'+id_sensor_endpoint.toString()      
+    var path = '/sensor_endpoint/'+id_player.toString()+'/'+id_sensor_endpoint.toString()      
     var url = "http://"+sensorHost + path;
     console.log("URL "+url);
     // construct the URL to post to a publication
@@ -535,7 +535,7 @@ sensor_endpoint.post('/sensor_endpoint/:id_online_sensor',jsonParser,  wrap(asyn
 
     var sensor_endpoint_data = req.body
   
-        var path = '/sensor_endpoint/'+id_online_sensor.toString()       
+    var path = '/sensor_endpoint/'+id_online_sensor.toString()       
     
     var url = "http://"+sensorHost + path;
     console.log("URL "+url);
@@ -576,7 +576,7 @@ sensor_endpoint.put('/sensor_endpoint/:id_players/:id_sensor_endpoint',jsonParse
 
     var sensor_endpoint_data = req.body
 
-        var path = '/sensor_endpoint/'+id_players.toString()+'/id_sensor_endpoint/'+id_sensor_endpoint.toString()       
+    var path = '/sensor_endpoint/'+id_players.toString()+'/id_sensor_endpoint/'+id_sensor_endpoint.toString()       
     
     var url = "http://"+sensorHost + path;
     console.log("URL "+url);
@@ -604,7 +604,7 @@ sensor_endpoint.put('/sensor_endpoint/:id_online_sensor/:id_sensor_endpoint',jso
 
     var sensor_endpoint_data = req.body
 
-        var path = '/sensor_endpoint/'+id_online_sensor.toString()+'/'+id_sensor_endpoint.toString()       
+    var path = '/sensor_endpoint/'+id_online_sensor.toString()+'/'+id_sensor_endpoint.toString()       
     
     var url = "http://"+sensorHost + path;
     console.log("URL "+url);
@@ -634,7 +634,7 @@ sensor_endpoint.delete('/sensor_endpoint/:id_sensor_endpoint',jsonParser,  wrap(
 
     var id_sensor_endpoint = req.params.id_sensor_endpoint
 
-        var path = '/sensor_endpoint/'+id_sensor_endpoint.toString()       
+    var path = '/sensor_endpoint/'+id_sensor_endpoint.toString()       
     
     var url = "http://"+sensorHost + path;
     console.log("URL "+url);

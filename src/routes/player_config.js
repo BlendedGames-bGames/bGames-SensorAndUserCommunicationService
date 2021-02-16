@@ -1,6 +1,7 @@
 const express = require('express');
 const player_config = express.Router();
-
+const userHost = "bgames-UserManagementService:3010"
+const cryptoRandomString = require('crypto-random-string');
 
 /*
 Input: Id of a player (range 0 to positive int)
@@ -27,6 +28,31 @@ player_config.get('/getPlayerConfig/:id', (req,res,next)=>{
     });
 
 })
+function createKey(){
+    let key = cryptoRandomString({length:15})
+    return key
+}
+
+player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,res,next)=>{
+    var id_player = req.params.id_player;
+
+    var path = '/create_desktop_key/'+id_player.toString()
+    var url = "http://"+userHost + path;
+    const MEDIUM_POST_URL = url;
+    
+    let key = createKey()
+
+    try {
+        const response = await axios.post(MEDIUM_POST_URL,key)
+        res.status(200).json(response.data)
+        
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
+
+    }
+}))
 
 /*
 Input: Id of a player (range 0 to positive int)
