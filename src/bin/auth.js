@@ -1,6 +1,6 @@
 var admin = require("firebase-admin");
 
-const credential = {
+const personal_credential = {
   "type": process.env.TYPE,
   "project_id": process.env.PROJECT_ID,
   "private_key_id":  process.env.PRIVATE_KEY_ID,
@@ -14,7 +14,7 @@ const credential = {
 }
 
 admin.initializeApp({
-  credential: admin.credential.cert(credential)
+  credential: admin.credential.cert(personal_credential)
 });
   
 export default admin;
