@@ -5,6 +5,7 @@
 import debug from 'debug';
 import http from 'http';
 import app from '../app';
+
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -71,3 +72,27 @@ const onError = error => {
   server.on('error', onError);
   server.on('listening', onListening);
   
+  
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+io  
+  .of('/authentication')
+  .on("connection", (socket) => {
+    console.log("New player")
+    socket.emit("welcome", "Canal de autenticacion llave para aplicacion de escritorio")
+
+    socket.on("joinRoom", (room) => {
+      socket.join(room)
+      return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
+    })
+
+    socket.on("userConfirmed", (room) => {
+      app.locals.confirm = true
+    })
+  })
+app.locals.io = io
+app.locals.confirm = false

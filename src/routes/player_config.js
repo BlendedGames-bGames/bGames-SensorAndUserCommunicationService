@@ -6,6 +6,8 @@ var bodyParser =require('body-parser');
 var jsonParser = bodyParser.json()
 const axios = require('axios').default;
 
+import admin from '../bin/auth'
+
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 /*
 Input: Id of a player (range 0 to positive int)
@@ -68,10 +70,88 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
     var password = req.body.password;
     var desktop_key = req.body.key;
     var provider = req.body.provider;
+    const io = req.app.locals.io
 
-    var path = '/create_desktop_key/'+id_player.toString()
+
+    var path = '/player_by_email/'+email
     var url = "http://"+userHost + path;
-    const MEDIUM_POST_URL = url;
+    const MEDIUM_GET_URL = url;
+
+    try {
+        const response = await axios.get(MEDIUM_GET_URL,data)
+        if(response.data.id_players !== null){
+            if(response.data.desktop_key !== null){
+                if(response.data.desktop_key === desktop_key ){
+                    admin
+                    .auth()
+                    .getUser(response.data.external_id)
+                    .then((userRecord) => {
+                        // See the UserRecord reference doc for the contents of userRecord.
+                        console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
+                        var user = userRecord.toJSON()
+                        if(provider /* !== userRecord.provider */){
+                            res.status(404).json({ message: 'Tipo de cuenta incorrecta' })
+
+                        }
+                        else{
+                            
+                            if(response.data.external_type === 'firebase.com'){                                
+                                if(user.providerData.providerId === password){
+                                    res.status(200).json({ message: 'Autenticacion correcta' })
+
+                                }
+                                else{
+                                    res.status(400).json({ message: 'Constraseña incorrecta' })
+
+                                }
+                                //if userRecord.password === password && userRecord.logged In  => autorizado
+                                //userRecord.logged In == false ==> suplantacion
+                            }
+                            else{
+                                //Proveedor
+                                var message = 'Se esta tratando de autenticar en la aplicacion de escritorio de Blended Games con sus datos, confirme que es usted'
+                                
+                                io.of("/authentication").in(response.data.id_players.toString()).emit('confirmUser', message)
+                                setInterval(() => {
+                                    if(req.app.locals.confirm){
+                                        res.status(200).json({ message: 'Autenticacion correcta' })
+                                    }
+                                }, 2*60);
+
+                            }
+
+                        }
+                     
+                    })
+                    .catch((error) => {
+                        console.log('Error fetching user data:', error);
+                    });                 
+
+
+                }
+                else{
+                    res.status(404).json({ message: 'La llave de autenticacion no se corresponde con la creada, porfavor revisarla' })
+
+                }
+            }
+            else{
+                res.status(404).json({ message: 'No se encontro una llave de autenticacion, revisar si la ha generado en la plataforma web' })
+            }
+        }
+        else{
+            console.error(error);
+            res.status(404).json({ message: 'Usuario con ese mail no existe' })
+        }
+        
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
+
+    }
+
+
+
     
     let key = createKey()
     console.log(key)
