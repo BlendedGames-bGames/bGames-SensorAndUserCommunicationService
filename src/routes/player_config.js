@@ -81,7 +81,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
 
     try {
         const response = await axios.post(MEDIUM_POST_URL,data)
-        res.status(200).json(response)
+        res.status(200).json(response.data)
         
     } 
     catch (error) {
