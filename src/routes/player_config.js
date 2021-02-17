@@ -79,7 +79,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
     const MEDIUM_GET_URL = url;
 
     try {
-        const response = await axios.get(MEDIUM_GET_URL,data)
+        const response = await axios.get(MEDIUM_GET_URL)
         console.log(response)
         if(response.data.id_players !== null){
             if(response.data.desktop_key !== null){
