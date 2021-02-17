@@ -80,8 +80,10 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
 
     try {
         const response = await axios.get(MEDIUM_GET_URL)
+        console.log(response)
 
         var actual_data = JSON.parse(response.data)
+        console.log(actual_data)
         if(actual_data.id_players !== null){
             if(actual_data.desktop_key !== null){
                 if(actual_data.desktop_key === desktop_key ){
