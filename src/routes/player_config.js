@@ -80,13 +80,14 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
 
     try {
         const response = await axios.get(MEDIUM_GET_URL)
-        console.log(response)
-        if(response.data.id_players !== null){
-            if(response.data.desktop_key !== null){
-                if(response.data.desktop_key === desktop_key ){
+
+        var actual_data = JSON.parse(response.data)
+        if(actual_data.id_players !== null){
+            if(actual_data.desktop_key !== null){
+                if(actual_data.desktop_key === desktop_key ){
                     admin
                     .auth()
-                    .getUser(response.data.external_id)
+                    .getUser(actual_data.external_id)
                     .then((userRecord) => {
                         // See the UserRecord reference doc for the contents of userRecord.
                         console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
@@ -97,7 +98,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                         }
                         else{
                             
-                            if(response.data.external_type === 'firebase.com'){                                
+                            if(actual_data.external_type === 'firebase.com'){                                
                                 if(user.providerData.providerId === password){
                                     res.status(200).json({ message: 'Autenticacion correcta' })
 
@@ -113,7 +114,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 //Proveedor
                                 var message = 'Se esta tratando de autenticar en la aplicacion de escritorio de Blended Games con sus datos, confirme que es usted'
                                 
-                                io.of("/authentication").in(response.data.id_players.toString()).emit('confirmUser', message)
+                                io.of("/authentication").in(actual_data.id_players.toString()).emit('confirmUser', message)
                                 setInterval(() => {
                                     if(req.app.locals.confirm){
                                         res.status(200).json({ message: 'Autenticacion correcta' })
