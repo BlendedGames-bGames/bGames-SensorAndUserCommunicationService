@@ -102,18 +102,15 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                         // See the UserRecord reference doc for the contents of userRecord.
                         console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
                         var user = userRecord.toJSON()
-                        var user2 = JSON.parse(userRecord)
-
-                        console.log(userRecord)
-                        console.log(user)
-                        console.log(user2)
-                        if(provider /* !== userRecord.provider */){
+                        if(provider.providerData[0].providerId !== provider ){
                             res.status(404).json({ message: 'Tipo de cuenta incorrecta' })
 
                         }
                         else{
                             
-                            if(actual_data.external_type === 'firebase.com'){                                
+                            if(actual_data.external_type === 'firebase.com'){              
+                                //Las claves se guardan hashed base 64 encoded
+                                //TODO                  
                                 if(user.providerData.providerId === password){
                                     res.status(200).json({ message: 'Autenticacion correcta' })
 
