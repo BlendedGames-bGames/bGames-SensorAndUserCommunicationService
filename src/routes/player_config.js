@@ -43,6 +43,7 @@ player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,r
     var path = '/create_desktop_key/'+id_player.toString()
     var url = "http://"+userHost + path;
     const MEDIUM_POST_URL = url;
+    console.log('Forcing push')
     
     let key = createKey()
     console.log(key)
