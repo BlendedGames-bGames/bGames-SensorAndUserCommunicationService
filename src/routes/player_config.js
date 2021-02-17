@@ -102,6 +102,11 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                         // See the UserRecord reference doc for the contents of userRecord.
                         console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
                         var user = userRecord.toJSON()
+                        var user2 = JSON.parse(userRecord)
+
+                        console.log(userRecord)
+                        console.log(user)
+                        console.log(user2)
                         if(provider /* !== userRecord.provider */){
                             res.status(404).json({ message: 'Tipo de cuenta incorrecta' })
 
