@@ -71,7 +71,8 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
     var desktop_key = req.body.key;
     var provider = req.body.provider;
     const io = req.app.locals.io
-
+    console.log(req.body)
+    console.log(req.app.locals.confirm)
 
     var path = '/player_by_email/'+email
     var url = "http://"+userHost + path;
@@ -79,6 +80,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,data)
+        console.log(response)
         if(response.data.id_players !== null){
             if(response.data.desktop_key !== null){
                 if(response.data.desktop_key === desktop_key ){
@@ -142,26 +144,6 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
             console.error(error);
             res.status(404).json({ message: 'Usuario con ese mail no existe' })
         }
-        
-    } 
-    catch (error) {
-        console.error(error);
-        res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
-
-    }
-
-
-
-    
-    let key = createKey()
-    console.log(key)
-    const data = {
-        "key": key
-    }
-
-    try {
-        const response = await axios.post(MEDIUM_POST_URL,data)
-        res.status(200).json(response.data)
         
     } 
     catch (error) {
