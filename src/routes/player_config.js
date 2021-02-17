@@ -85,12 +85,20 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
         var actual_data = JSON.parse(response.data)
         console.log(actual_data)
         if(actual_data.id_players !== null){
+            console.log('pase por id_players')
             if(actual_data.desktop_key !== null){
+                console.log('pase por desktop_key')
+                console.log(actual_data.desktop_key)
+                console.log(desktop_key)
+
                 if(actual_data.desktop_key === desktop_key ){
+                    console.log('Pase por la igualdad de llaves')
+
                     admin
                     .auth()
                     .getUser(actual_data.external_id)
                     .then((userRecord) => {
+                        console.log('encontre el usuario con ', actual_data.external_id)
                         // See the UserRecord reference doc for the contents of userRecord.
                         console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
                         var user = userRecord.toJSON()
@@ -129,28 +137,35 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                      
                     })
                     .catch((error) => {
+                        console.log('No se pudo encontrar el usuario')
                         console.log('Error fetching user data:', error);
                     });                 
 
 
                 }
                 else{
+                    console.log('La llave de autenticacion no se corresponde con la creada, porfavor revisarla')
+
                     res.status(404).json({ message: 'La llave de autenticacion no se corresponde con la creada, porfavor revisarla' })
 
                 }
             }
             else{
+                console.log('No se encontro una llave de autenticacion, revisar si la ha generado en la plataforma web')
+
                 res.status(404).json({ message: 'No se encontro una llave de autenticacion, revisar si la ha generado en la plataforma web' })
             }
         }
         else{
+            console.log('Usuario con ese mail no existe')
+
             console.error(error);
             res.status(404).json({ message: 'Usuario con ese mail no existe' })
         }
         
     } 
     catch (error) {
-        console.error(error);
+        console.log('No responde el servicio de administracion de sensores, intente nuevamente')
         res.status(400).json({ message: 'No responde el servicio de administracion de sensores, intente nuevamente' })
 
     }
