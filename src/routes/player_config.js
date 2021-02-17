@@ -127,11 +127,21 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 var message = 'Se esta tratando de autenticar en la aplicacion de escritorio de Blended Games con sus datos, confirme que es usted'
                                 
                                 io.of("/authentication").in(actual_data.id_players.toString()).emit('confirmUser', message)
-                                setInterval(() => {
+                                var interval
+                                var time = 120 //sec, 2 min
+                                interval = setInterval( () => {
+                                    console.log(req.app.locals.confirm)
                                     if(req.app.locals.confirm){
+                                        clearInterval(interval)
                                         res.status(200).json({ message: 'Autenticacion correcta' })
                                     }
-                                }, 2*60);
+                                    else if(time > 0){
+                                        time--
+                                    }
+                                    else{
+                                        res.status(400).json({ message: 'Se acabo el tiempo' })
+                                    }
+                              }, 1000 )
 
                             }
 
