@@ -146,6 +146,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                     }
                                     else{
                                         clearInterval(interval)
+                                        req.app.locals.confirm = false
                                         res.status(400).json({ message: 'Se acabo el tiempo' })
                                     }
                               }, 1000 )
