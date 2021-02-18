@@ -138,6 +138,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 interval = setInterval( () => {
                                     console.log(req.app.locals.confirm)
                                     if(req.app.locals.confirm){
+                                        req.app.locals.confirm = false
                                         clearInterval(interval)
                                         res.status(200).json({ message: 'Autenticacion correcta' })
                                     }
