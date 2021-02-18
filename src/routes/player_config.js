@@ -66,11 +66,17 @@ player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,r
 }))
 
 player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res,next)=>{
-    var email = req.body.email;
-    var password = req.body.password;
-    var desktop_key = req.body.key;
-    var provider = req.body.provider;
+
     const io = req.app.locals.io
+    let keys = Object.keys(req.body)
+    console.log(keys)
+    let properJSON = JSON.parse(keys[0])
+    console.log(properJSON)
+    var email = properJSON.email;
+    var password = properJSON.password;
+    var desktop_key = properJSON.key;
+    var provider = properJSON.provider;
+
     console.log(req.body)
     console.log(req.app.locals.confirm)
 
@@ -102,12 +108,12 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                         // See the UserRecord reference doc for the contents of userRecord.
                         console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
                         var user = userRecord.toJSON()
+                        console.log(user.providerData)
+                        console.log(user.providerData[0].providerId)
                         if(user.providerData[0].providerId !== provider ){
                             res.status(404).json({ message: 'Tipo de cuenta incorrecta' })
-
                         }
-                        else{
-                            
+                        else{                            
                             if(actual_data.external_type === 'firebase.com'){              
                                 //Las claves se guardan hashed base 64 encoded
                                 //TODO                  
