@@ -140,7 +140,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                     if(req.app.locals.confirm){
                                         req.app.locals.confirm = false
                                         clearInterval(interval)
-                                        res.status(200).json({ message: 'Autenticacion correcta' })
+                                        res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
                                     }
                                     else if(time > 0){
                                         time--
