@@ -71,7 +71,8 @@ const onError = error => {
     console.log(`listening on port ${port} ...... `)});
   server.on('error', onError);
   server.on('listening', onListening);
-  
+
+var confirmLogs = []
   
 const io = require("socket.io")(server, {
   cors: {
@@ -87,12 +88,21 @@ io
 
     socket.on("joinRoom", (room) => {
       socket.join(room)
+      confirmLogs.push({id:room,log:false})
       return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
     })
-
     socket.on("userConfirmed", (room) => {
-      app.locals.confirm = true
+      let user_index = 0
+      confirmLogs.forEach((user,index) => {
+        if(user.id === room){
+          user_index = index
+        }        
+      });      
+      confirmLogs[user_index].log = true
+      app.locals.index = user_index
+
     })
   })
 app.locals.io = io
-app.locals.confirm = false
+
+export default confirmLogs;

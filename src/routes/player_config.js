@@ -7,6 +7,7 @@ var jsonParser = bodyParser.json()
 const axios = require('axios').default;
 
 import admin from '../bin/auth'
+import confirmLogs from '../bin/www';
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 /*
@@ -68,6 +69,8 @@ player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,r
 player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res,next)=>{
 
     const io = req.app.locals.io
+    const index = req.app.locals.index
+
     let keys = Object.keys(req.body)
     console.log(keys)
     let properJSON = JSON.parse(keys[0])
@@ -136,9 +139,9 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 var interval
                                 var time = 120 //sec, 2 min
                                 interval = setInterval( () => {
-                                    console.log(req.app.locals.confirm)
+                                    console.log(confirmLogs[index].log)
                                     if(req.app.locals.confirm){
-                                        req.app.locals.confirm = false
+                                        confirmLogs[index].log = false
                                         clearInterval(interval)
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
                                     }
@@ -147,7 +150,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                     }
                                     else{
                                         clearInterval(interval)
-                                        req.app.locals.confirm = false
+                                        confirmLogs[index].log = false
                                         res.status(400).json({ message: 'Se acabo el tiempo' })
                                     }
                               }, 1000 )
