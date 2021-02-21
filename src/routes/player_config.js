@@ -154,10 +154,17 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 io.of("/authentication").in(actual_data.id_players.toString()).emit('confirmUser', message)
                                 var time = 120 //sec, 2 min
                                 console.log("player_config: linea numero 156",confirmLogs[index])
+                                
                                 interval = setInterval( () => {
-                                    console.log(confirmLogs[index].log)
-                                    if(confirmLogs[index].log){
-                                        console.log("player_config: linea numero 160",confirmLogs[index])
+                                    let userLog = confirmLogs[index]
+                                    if(userLog === undefined){
+                                        userLog = false
+                                    }
+                                    else{
+                                        userLog =  confirmLogs[index].log
+                                    }
+                                    if(userLog){
+                                        console.log("player_config: linea numero 160",userLog)
                                         confirmLogs[index].log = false 
                                         deleteKey(actual_data.id_player)
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
@@ -166,7 +173,6 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                         time--
                                     }
                                     else{
-                                        confirmLogs[index].log = false
                                         deleteKey(actual_data.id_player)
                                         res.status(400).json({ message: 'Se acabo el tiempo' })
                                     }
