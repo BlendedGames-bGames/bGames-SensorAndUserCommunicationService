@@ -66,6 +66,22 @@ player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,r
     }
 }))
 
+var interval;
+
+async function deleteKey(id_player){
+    clearInterval(interval)
+    const data = {
+        key: null
+    }
+    const GET_KEY_URL = "http://"+userHost+'/create_desktop_key/'+id_player
+    try {
+        const reply = await Axios.post(GET_KEY_URL,data)
+        console.log(reply)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res,next)=>{
 
     const io = req.app.locals.io
@@ -136,21 +152,20 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 var message = 'Se esta tratando de autenticar en la aplicacion de escritorio de Blended Games con sus datos, confirme que es usted'
                                 
                                 io.of("/authentication").in(actual_data.id_players.toString()).emit('confirmUser', message)
-                                var interval
                                 var time = 120 //sec, 2 min
                                 interval = setInterval( () => {
                                     console.log(confirmLogs[index].log)
                                     if(confirmLogs[index].log){
-                                        confirmLogs[index].log = false
-                                        clearInterval(interval)
+                                        confirmLogs[index].log = false 
+                                        deleteKey(actual_data.id_player)
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
                                     }
                                     else if(time > 0){
                                         time--
                                     }
                                     else{
-                                        clearInterval(interval)
                                         confirmLogs[index].log = false
+                                        deleteKey(actual_data.id_player)
                                         res.status(400).json({ message: 'Se acabo el tiempo' })
                                     }
                               }, 1000 )
