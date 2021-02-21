@@ -89,18 +89,22 @@ io
     socket.on("joinRoom", (room) => {
       socket.join(room)
       confirmLogs.push({id:room,log:false})
+      console.log("www: linea numero 96",confirmLogs)
       return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
     })
     socket.on("userConfirmed", (room) => {
-      console.log(confirmLogs)
+      console.log("www: linea numero 95",room)
+      console.log("www: linea numero 96",confirmLogs)
       let user_index = 0
       confirmLogs.forEach((user,index) => {
         if(user.id === room){
           user_index = index
         }        
       });      
+      console.log("www: linea numero 103",user_index)
+      console.log("www: linea numero 104",confirmLogs)
       confirmLogs[user_index].log = true
-      console.log(confirmLogs)
+      console.log("www: linea numero 106",confirmLogs)
       app.locals.index = user_index
 
     })

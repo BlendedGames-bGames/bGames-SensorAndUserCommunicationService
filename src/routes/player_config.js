@@ -86,8 +86,8 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
 
     const io = req.app.locals.io
     const index = req.app.locals.index
-    console.log(index)
-    console.log(confirmLogs)
+    console.log("player_config: linea numero 89",index)
+    console.log("player_config: linea numero 90",confirmLogs)
 
     let keys = Object.keys(req.body)
     console.log(keys)
@@ -98,8 +98,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
     var desktop_key = properJSON.key;
     var provider = properJSON.provider;
 
-    console.log(req.body)
-    console.log(req.app.locals.confirm)
+    console.log("player_config: linea numero 101",req.body)
 
     var path = '/player_by_email/'+email
     var url = "http://"+userHost + path;
@@ -107,10 +106,9 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
 
     try {
         const response = await axios.get(MEDIUM_GET_URL)
-        console.log(response)
 
         var actual_data = JSON.parse(response.data)
-        console.log(actual_data)
+        console.log("player_config: linea numero 111",actual_data)
         if(actual_data.id_players !== null){
             console.log('pase por id_players')
             if(actual_data.desktop_key !== null){
@@ -155,9 +153,11 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 
                                 io.of("/authentication").in(actual_data.id_players.toString()).emit('confirmUser', message)
                                 var time = 120 //sec, 2 min
+                                console.log("player_config: linea numero 156",confirmLogs[index])
                                 interval = setInterval( () => {
                                     console.log(confirmLogs[index].log)
                                     if(confirmLogs[index].log){
+                                        console.log("player_config: linea numero 160",confirmLogs[index])
                                         confirmLogs[index].log = false 
                                         deleteKey(actual_data.id_player)
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
