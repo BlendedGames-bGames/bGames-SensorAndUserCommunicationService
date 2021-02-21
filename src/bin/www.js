@@ -92,6 +92,7 @@ io
       return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
     })
     socket.on("userConfirmed", (room) => {
+      console.log(confirmLogs)
       let user_index = 0
       confirmLogs.forEach((user,index) => {
         if(user.id === room){
@@ -99,6 +100,7 @@ io
         }        
       });      
       confirmLogs[user_index].log = true
+      console.log(confirmLogs)
       app.locals.index = user_index
 
     })

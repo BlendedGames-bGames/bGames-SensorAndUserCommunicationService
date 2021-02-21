@@ -86,6 +86,8 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
 
     const io = req.app.locals.io
     const index = req.app.locals.index
+    console.log(index)
+    console.log(confirmLogs)
 
     let keys = Object.keys(req.body)
     console.log(keys)
