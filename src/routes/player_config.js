@@ -156,6 +156,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 console.log("player_config: linea numero 156",confirmLogs[index])
                                 
                                 interval = setInterval( () => {
+                                    console.log(time)
                                     let userLog = confirmLogs[index]
                                     if(userLog === undefined){
                                         userLog = false
