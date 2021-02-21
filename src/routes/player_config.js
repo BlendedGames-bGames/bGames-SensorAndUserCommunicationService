@@ -75,7 +75,7 @@ async function deleteKey(id_player){
     }
     const GET_KEY_URL = "http://"+userHost+'/create_desktop_key/'+id_player
     try {
-        const reply = await Axios.post(GET_KEY_URL,data)
+        const reply = await axios.post(GET_KEY_URL,data)
         console.log(reply)
 
     } catch (error) {
