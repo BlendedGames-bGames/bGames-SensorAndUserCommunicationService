@@ -86,8 +86,7 @@ async function deleteKey(id_player){
 player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res,next)=>{
 
     const io = req.app.locals.io
-    const index = req.app.locals.index
-    console.log("player_config: linea numero 89",index)
+    console.log("player_config: linea numero 89",req.app.locals.index)
     console.log("player_config: linea numero 90",confirmLogs)
 
     let keys = Object.keys(req.body)
@@ -154,23 +153,23 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 
                                 io.of("/authentication").in(actual_data.id_players.toString()).emit('confirmUser', message)
                                 var time = 120 //sec, 2 min
-                                console.log("player_config: linea numero 156",confirmLogs[index])
+                                console.log("player_config: linea numero 156",confirmLogs[req.app.locals.index])
                                 
                                 interval = setInterval( () => {
                                     console.log(time)
-                                    let userLog = confirmLogs[index]
+                                    let userLog = confirmLogs[req.app.locals.index]
                                     console.log(userLog)
 
                                     if(userLog === undefined){
                                         userLog = false
                                     }
                                     else{
-                                        userLog =  confirmLogs[index].log
+                                        userLog =  confirmLogs[req.app.locals.index].log
                                     }
                                     console.log(userLog)
                                     if(userLog){
                                         console.log("player_config: linea numero 160",userLog)
-                                        confirmLogs[index].log = false 
+                                        confirmLogs[req.app.locals.index].log = false 
                                         deleteKey(actual_data.id_players)
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
                                     }
