@@ -70,6 +70,7 @@ var interval;
 
 async function deleteKey(id_player){
     clearInterval(interval)
+    console.log(id_player)
     const data = {
         key: null
     }
