@@ -158,23 +158,28 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 interval = setInterval( () => {
                                     console.log(time)
                                     let userLog = confirmLogs[index]
+                                    console.log(userLog)
+
                                     if(userLog === undefined){
                                         userLog = false
                                     }
                                     else{
                                         userLog =  confirmLogs[index].log
                                     }
+                                    console.log(userLog)
                                     if(userLog){
                                         console.log("player_config: linea numero 160",userLog)
                                         confirmLogs[index].log = false 
-                                        deleteKey(actual_data.id_player)
+                                        deleteKey(actual_data.id_players)
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
                                     }
                                     else if(time > 0){
                                         time--
                                     }
                                     else{
-                                        deleteKey(actual_data.id_player)
+                                        console.log("player_config: linea numero 180",actual_data)
+                                        console.log("player_config: linea numero 181",actual_data.id_players)
+                                        deleteKey(actual_data.id_players)
                                         res.status(400).json({ message: 'Se acabo el tiempo' })
                                     }
                               }, 1000 )
