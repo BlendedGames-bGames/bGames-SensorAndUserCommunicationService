@@ -42,6 +42,7 @@ function createKey(){
 
 player_config.post('/logout/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
+    const io = req.app.locals.io
     io.of("/authentication").in(id_player.toString()).emit('logout')
 
 }))
@@ -85,7 +86,6 @@ async function deleteKey(id_player){
     try {
         const reply = await axios.post(GET_KEY_URL,data)
         console.log(reply)
-        io.of("/authentication").in(id_player.toString()).emit('keyUsed')
 
 
     } catch (error) {
@@ -180,6 +180,8 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                         console.log("player_config: linea numero 160",userLog)
                                         confirmLogs[req.app.locals.index].log = false 
                                         deleteKey(actual_data.id_players)
+                                        io.of("/authentication").in(id_player.toString()).emit('keyUsed')
+
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
                                     }
                                     else if(time > 0){
