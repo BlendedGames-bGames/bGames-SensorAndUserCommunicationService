@@ -180,7 +180,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                         console.log("player_config: linea numero 160",userLog)
                                         confirmLogs[req.app.locals.index].log = false 
                                         deleteKey(actual_data.id_players)
-                                        io.of("/authentication").in(id_player.toString()).emit('keyUsed')
+                                        io.of("/authentication").in(actual_data.id_players.toString()).emit('keyUsed')
 
                                         res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
                                     }
