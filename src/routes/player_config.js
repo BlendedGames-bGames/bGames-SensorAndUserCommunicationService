@@ -40,6 +40,13 @@ function createKey(){
     return key
 }
 
+player_config.post('/logout/:id_player',jsonParser,  wrap(async(req,res,next)=>{
+    var id_player = req.params.id_player;
+    io.of("/authentication").in(id_player.toString()).emit('logout')
+
+}))
+
+
 player_config.get('/create_desktop_key/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
 
@@ -78,6 +85,8 @@ async function deleteKey(id_player){
     try {
         const reply = await axios.post(GET_KEY_URL,data)
         console.log(reply)
+        io.of("/authentication").in(id_player.toString()).emit('keyUsed')
+
 
     } catch (error) {
         console.log(error)
