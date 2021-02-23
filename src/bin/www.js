@@ -88,25 +88,34 @@ io
 
     socket.on("joinRoom", (room) => {
       socket.join(room)
-      confirmLogs.push({id:room,log:false})
-      console.log("www: linea numero 92",confirmLogs)
+      let user_index = -1
+      confirmLogs.forEach((user,index) => {
+        if(user.id === room){
+          user_index = index
+        }        
+      }); 
+      if(user_index === -1){
+        //Es un usuario nuevo ya que no se encuentra en el arreglo de logins
+        confirmLogs.push({id:room,log:false})
+      }
+      console.log("www: linea numero 101",confirmLogs)
       return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
     })
     socket.on("userConfirmed", (room) => {
-      console.log("www: linea numero 96",room)
-      console.log("www: linea numero 97",confirmLogs)
+      console.log("www: linea numero 105",room)
+      console.log("www: linea numero 106",confirmLogs)
       let user_index;
       confirmLogs.forEach((user,index) => {
         if(user.id === room){
           user_index = index
         }        
       });      
-      console.log("www: linea numero 104",user_index)
-      console.log("www: linea numero 105",confirmLogs)
+      console.log("www: linea numero 113",user_index)
+      console.log("www: linea numero 114",confirmLogs)
       if(user_index !== undefined && confirmLogs !== undefined && confirmLogs[user_index] !== undefined){
         confirmLogs[user_index].log = true
       }
-      console.log("www: linea numero 107",confirmLogs)
+      console.log("www: linea numero 118",confirmLogs)
       app.locals.index = user_index
 
     })
