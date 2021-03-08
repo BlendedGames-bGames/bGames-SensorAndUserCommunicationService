@@ -2,8 +2,12 @@ const express = require('express');
 const sensor_endpoint = express.Router();
 const axios = require('axios').default;
 var bodyParser =require('body-parser');
+const Twitter = require('twitter-v2');
 
 var jsonParser = bodyParser.json()
+const client_twitter = new Twitter({
+    bearer_token: process.env.BEARER_TOKEN,
+});
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 const sensorHost = "bgames-SensorManagementService:3007"
@@ -553,6 +557,43 @@ sensor_endpoint.post('/sensor_endpoint/:id_online_sensor',jsonParser,  wrap(asyn
 
     } 
 }))
+
+//TWITTER 
+sensor_endpoint.post('/twitter_specific_parameter_call',jsonParser,  wrap(async(req,res,next)=>{
+    var name = req.body.name
+    var tokens = req.body.tokens
+    var token_parameters = req.body.token_parameters
+    var parameters_template = req.body.parameters_template
+    var header_parameters = req.body.header_parameters
+    var data = req.body.data
+
+    console.log(req.body)
+
+    
+    let search_param = parameters_template.search_data.search_param
+    let retrieve_param = parameters_template.search_data.retrieve_param
+    let url = parameters_template.search_data.url
+    let reply 
+
+    if(name === 'Estadisticas de un tweet'){
+        header_parameters['id'] = data
+        reply = await client_twitter.get(url, header_parameters);
+        console.log(reply)
+        if(reply.author_id === tokens.id){
+            //El tweet lo hizo el usuario
+
+            res.status(200).json({ message: 1, retrieve_param:data })
+
+        }
+        else{ 
+            res.status(200).json({ message: 0 })
+
+        }
+        
+
+    }
+}))
+
 /*
 UPDATE ENDPOINTS:
 
