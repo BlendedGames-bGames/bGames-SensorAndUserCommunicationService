@@ -576,11 +576,11 @@ sensor_endpoint.post('/twitter_specific_parameter_call',jsonParser,  wrap(async(
     let reply 
 
     if(name === 'Estadisticas de un tweet'){
-        header_parameters['id'] = data
+        header_parameters['ids'] = data
         //reply = await client_twitter.get(url, header_parameters);
         reply = await client_twitter.get('tweets', {ids:'1368756763466596355', "tweet.fields":"author_id,public_metrics"});
         console.log(reply)
-        if(reply.author_id === tokens.id){
+        if(reply.data[0].author_id === tokens.id){
             //El tweet lo hizo el usuario
 
             res.status(200).json({ message: 1, retrieve_param:data })
