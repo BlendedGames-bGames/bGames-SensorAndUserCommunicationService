@@ -578,7 +578,7 @@ sensor_endpoint.post('/twitter_specific_parameter_call',jsonParser,  wrap(async(
     if(name === 'Estadisticas de un tweet'){
         header_parameters['id'] = data
         //reply = await client_twitter.get(url, header_parameters);
-        reply = await client_twitter.get('tweets', {id:'1368756763466596355', "tweet.fields":"author_id,public_metrics"});
+        reply = await client_twitter.get('tweets', {ids:'1368756763466596355', "tweet.fields":"author_id,public_metrics"});
         console.log(reply)
         if(reply.author_id === tokens.id){
             //El tweet lo hizo el usuario
