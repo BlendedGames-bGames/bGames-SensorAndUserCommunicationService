@@ -577,8 +577,9 @@ sensor_endpoint.post('/twitter_specific_parameter_call',jsonParser,  wrap(async(
 
     if(name === 'Estadisticas de un tweet'){
         header_parameters['ids'] = data
+        console.log(header_parameters)
         //reply = await client_twitter.get(url, header_parameters);
-        reply = await client_twitter.get('tweets', {ids:'1368756763466596355', "tweet.fields":"author_id,public_metrics"});
+        reply = await client_twitter.get(url,header_parameters);
         console.log(reply)
         console.log(reply.data[0] )
         console.log(reply.data[0].author_id )
