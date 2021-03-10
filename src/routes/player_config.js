@@ -45,10 +45,10 @@ player_config.post('/logout/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     const io = req.app.locals.io
     const confirmLogsReplica = req.app.locals.confirmLogsReplica
     if(confirmLogsReplica !== undefined){
-        
+        let user_index = -1
         confirmLogsReplica.forEach((user,index) => {
             if(user.id === id_player){
-            user_index = index
+                  user_index = index
             }        
         }); 
         console.log(confirmLogsReplica)
