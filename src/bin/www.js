@@ -101,6 +101,17 @@ io
       console.log("www: linea numero 101",confirmLogs)
       return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
     })
+    socket.on("leaveRoom", (room) => {
+      socket.leave(room)
+      confirmLogs.forEach((user,index) => {
+        if(user.id === room){
+          //Se saca del arreglo de los logs al usuario
+          confirmLogs.slice(index,1)
+        }        
+      }); 
+      console.log("www: linea numero 101",confirmLogs)
+      return socket.emit("success", "Se ha salido de su room personal de autenticacion para aplicacion de escritorio")
+    })
     socket.on("userConfirmed", (room) => {
       console.log("www: linea numero 105",room)
       console.log("www: linea numero 106",confirmLogs)
