@@ -99,6 +99,9 @@ io
         confirmLogs.push({id:room,log:false})
       }
       console.log("www: linea numero 101",confirmLogs)
+      //Replica del estado actual de confirmLogs
+      app.locals.confirmLogsReplica = confirmLogs
+
       return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
     })
     socket.on("leaveRoom", (room) => {

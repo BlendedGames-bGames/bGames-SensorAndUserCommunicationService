@@ -43,9 +43,36 @@ function createKey(){
 player_config.post('/logout/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     const io = req.app.locals.io
+    confirmLogsReplica.forEach((user,index) => {
+        if(user.id === id_player){
+          user_index = index
+        }        
+    }); 
+    confirmLogs[user_index].log = false 
     io.of("/authentication").in(id_player.toString()).emit('logout')
     res.status(200).json({message:"Logout notificado"})
 
+}))
+player_config.get('/player_already_logged_desktop_app/:id_player',jsonParser,  wrap(async(req,res,next)=>{
+    var id_player = req.params.id_player;
+    const confirmLogsReplica = req.app.locals.confirmLogsReplica
+    let user_index = -1
+    confirmLogsReplica.forEach((user,index) => {
+        if(user.id === id_player){
+          user_index = index
+        }        
+    }); 
+    if(user_index !== -1){
+        if(confirmLogsReplica[user_index].log){
+            res.status(200).json({message:false})
+        }
+        else{
+            res.status(200).json({message:true})
+        }
+    }
+    else{
+         res.status(200).json({message:false})
+    }
 }))
 
 
@@ -179,7 +206,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                     console.log(userLog)
                                     if(userLog){
                                         console.log("player_config: linea numero 160",userLog)
-                                        confirmLogs[req.app.locals.index].log = false 
+                                        //confirmLogs[req.app.locals.index].log = false 
                                         deleteKey(actual_data.id_players)
                                         io.of("/authentication").in(actual_data.id_players.toString()).emit('keyUsed')
 
