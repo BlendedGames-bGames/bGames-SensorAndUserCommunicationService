@@ -43,15 +43,24 @@ function createKey(){
 player_config.post('/logout/:id_player',jsonParser,  wrap(async(req,res,next)=>{
     var id_player = req.params.id_player;
     const io = req.app.locals.io
-    confirmLogsReplica.forEach((user,index) => {
-        if(user.id === id_player){
-          user_index = index
-        }        
-    }); 
-    console.log(confirmLogsReplica)
-    confirmLogs[user_index].log = false 
-    io.of("/authentication").in(id_player.toString()).emit('logout')
-    res.status(200).json({message:"Logout notificado"})
+    const confirmLogsReplica = req.app.locals.confirmLogsReplica
+    if(confirmLogsReplica !== undefined){
+        
+        confirmLogsReplica.forEach((user,index) => {
+            if(user.id === id_player){
+            user_index = index
+            }        
+        }); 
+        console.log(confirmLogsReplica)
+        confirmLogs[user_index].log = false 
+        io.of("/authentication").in(id_player.toString()).emit('logout')
+        res.status(200).json({message:"Logout notificado"})
+
+    }
+    else{
+        res.status(200).json({message:"Logout notificado"})
+
+    }
 
 }))
 player_config.get('/player_already_logged_desktop_app/:id_player',jsonParser,  wrap(async(req,res,next)=>{
