@@ -84,6 +84,7 @@ io
   .of('/authentication')
   .on("connection", (socket) => {
     console.log("New player")
+    app.locals.confirmLogsReplica = confirmLogs
     socket.emit("welcome", "Canal de autenticacion llave para aplicacion de escritorio")
 
     socket.on("joinRoom", (room) => {
@@ -100,7 +101,6 @@ io
       }
       console.log("www: linea numero 101",confirmLogs)
       //Replica del estado actual de confirmLogs
-      app.locals.confirmLogsReplica = confirmLogs
 
       return socket.emit("success", "Se ha unido a su room personal de autenticacion para aplicacion de escritorio")
     })

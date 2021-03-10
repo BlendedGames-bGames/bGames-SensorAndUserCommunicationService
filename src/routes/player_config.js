@@ -48,6 +48,7 @@ player_config.post('/logout/:id_player',jsonParser,  wrap(async(req,res,next)=>{
           user_index = index
         }        
     }); 
+    console.log(confirmLogsReplica)
     confirmLogs[user_index].log = false 
     io.of("/authentication").in(id_player.toString()).emit('logout')
     res.status(200).json({message:"Logout notificado"})
@@ -64,10 +65,10 @@ player_config.get('/player_already_logged_desktop_app/:id_player',jsonParser,  w
     }); 
     if(user_index !== -1){
         if(confirmLogsReplica[user_index].log){
-            res.status(200).json({message:false})
+            res.status(200).json({message:true})
         }
         else{
-            res.status(200).json({message:true})
+            res.status(200).json({message:false})
         }
     }
     else{
