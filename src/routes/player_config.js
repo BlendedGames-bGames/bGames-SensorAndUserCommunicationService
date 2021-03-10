@@ -67,22 +67,29 @@ player_config.get('/player_already_logged_desktop_app/:id_player',jsonParser,  w
     var id_player = req.params.id_player;
     const confirmLogsReplica = req.app.locals.confirmLogsReplica
     let user_index = -1
-    confirmLogsReplica.forEach((user,index) => {
-        if(user.id === id_player){
-          user_index = index
-        }        
-    }); 
-    if(user_index !== -1){
-        if(confirmLogsReplica[user_index].log){
-            res.status(200).json({message:true})
+    try {
+        confirmLogsReplica.forEach((user,index) => {
+            if(user.id === id_player){
+              user_index = index
+            }        
+        }); 
+        if(user_index !== -1){
+            if(confirmLogsReplica[user_index].log){
+                res.status(200).json({message:true})
+            }
+            else{
+                res.status(200).json({message:false})
+            }
         }
         else{
-            res.status(200).json({message:false})
+             res.status(200).json({message:false})
         }
+
+    } catch(e){
+        res.status(200).json({message:false})
+
     }
-    else{
-         res.status(200).json({message:false})
-    }
+   
 }))
 
 
