@@ -602,7 +602,7 @@ sensor_endpoint.post('/twitter_specific_parameter_call',jsonParser,  wrap(async(
 
                 }
                 else{
-                    res.status(200).json({ message: 1, retrieve_param:data })
+                    res.status(200).json({ message: 0, retrieve_param:data })
 
                 }
 
