@@ -575,7 +575,7 @@ sensor_endpoint.post('/twitter_specific_parameter_call',jsonParser,  wrap(async(
     let url = parameters_template.search_data.url
     let reply 
 
-    if(name === 'Estadisticas de un tweet'){
+    if(name === 'Estadisticas de un tweet' || name === 'Estadisticas de multimedia'){
         header_parameters['ids'] = data
         console.log(header_parameters)
         //reply = await client_twitter.get(url, header_parameters);
@@ -588,8 +588,30 @@ sensor_endpoint.post('/twitter_specific_parameter_call',jsonParser,  wrap(async(
         if(reply.data[0].author_id === tokens.id){
             //El tweet lo hizo el usuario
             console.log('autenticado')
+            if(name === 'Estadisticas de multimedia'){
+                if(reply.hasOwnProperty("includes")){
+                    let aux_data = reply.includes
+                    if(aux_data.hasOwnProperty("media")){
+                        res.status(200).json({ message: 1, retrieve_param:data })
 
-            res.status(200).json({ message: 1, retrieve_param:data })
+                    }
+                    else{
+                        res.status(200).json({ message: 0, retrieve_param:data })
+
+                    }
+
+                }
+                else{
+                    res.status(200).json({ message: 1, retrieve_param:data })
+
+                }
+
+                
+            }
+            else{
+                res.status(200).json({ message: 1, retrieve_param:data })
+            }
+
 
         }
         else{ 
