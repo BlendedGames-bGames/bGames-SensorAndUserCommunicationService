@@ -10,6 +10,19 @@ import admin from '../bin/auth'
 import confirmLogs from '../bin/www';
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
+
+var nodemailer = require('nodemailer');
+var officialMail =  {
+    user: 'blendedgamesframework@gmail.com',
+    pass: 'OnlineOffline42'
+}
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: officialMail
+});
+
+
+
 /*
 Input: Id of a player (range 0 to positive int)
 Output: Name, password and age of that player
@@ -137,6 +150,31 @@ async function deleteKey(id_player){
         console.log(error)
     }
 }
+
+player_config.post('/sendEmailConfirmation',jsonParser,  wrap(async(req,res,next)=>{
+    var password = req.body.password;
+    var email = req.body.email;
+    var hiddenLink = 'http://144.126.216.255:8080/confirmEmail/'+email+'/'+password
+    var link = 'http://144.126.216.255:8080/confirmEmail'
+
+    var mailOptions = {
+        from: officialMail.user,
+        to: email,
+        subject: 'Verificacion de email en Blended Games para el usuario '+email,      
+        html:"<p>Hola "+email+ "</p> <p>Presiona el siguiente link para confirmar su email</p><p><a href='"+hiddenLink+"'>"+link+"</a></p><p>Si no solicitó verificar esta dirección, puede ignorar este correo electrónico.</p><p>El equipo de Blended Games :)</p>"
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });  
+}))
+
+
+
 player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res,next)=>{
 
     const io = req.app.locals.io
