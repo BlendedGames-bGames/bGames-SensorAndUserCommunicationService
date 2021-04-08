@@ -171,6 +171,8 @@ player_config.post('/sendEmailConfirmation',jsonParser,  wrap(async(req,res,next
             console.log('Email sent: ' + info.response);
         }
     });  
+    res.status(200).json({ message: 'Mail enviado' })
+
 }))
 
 
