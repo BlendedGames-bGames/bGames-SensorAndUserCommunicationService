@@ -231,7 +231,7 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 //Las claves se guardan hashed base 64 encoded
                                 //TODO                  
                                 if(user.providerData.providerId === password){
-                                    res.status(200).json({ message: 'Autenticacion correcta' })
+                                    res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
 
                                 }
                                 else{
