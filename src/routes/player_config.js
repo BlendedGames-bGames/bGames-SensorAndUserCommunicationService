@@ -231,6 +231,9 @@ player_config.post('/desktop_authentication_key',jsonParser,  wrap(async(req,res
                                 //Las claves se guardan hashed base 64 encoded
                                 //TODO                  
                                 if(user.providerData.providerId === password){
+                                    
+                                    deleteKey(actual_data.id_players)
+                                    io.of("/authentication").in(actual_data.id_players.toString()).emit('keyUsed')
                                     res.status(200).json({ id_player:actual_data.id_players , message: 'Autenticacion correcta' })
 
                                 }
