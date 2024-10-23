@@ -5,7 +5,7 @@ var bodyParser =require('body-parser');
 import { testEnvironmentVariable } from '../settings';
 
 var jsonParser = bodyParser.json()
-const sensorHost = "bgames-SensorManagementService:3007"
+const sensorHost = "localhost:3007"
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 /*

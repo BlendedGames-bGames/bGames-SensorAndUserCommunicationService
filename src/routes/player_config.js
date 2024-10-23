@@ -1,6 +1,6 @@
 const express = require('express');
 const player_config = express.Router();
-const userHost = "bgames-UserManagementService:3010"
+const userHost = "localhost:3010"
 const cryptoRandomString = require('crypto-random-string');
 var bodyParser =require('body-parser');
 var jsonParser = bodyParser.json()
@@ -13,8 +13,8 @@ const wrap = fn => (...args) => fn(...args).catch(args[2])
 
 var nodemailer = require('nodemailer');
 var officialMail =  {
-    user: 'blendedgamesframework@gmail.com',
-    pass: 'OnlineOffline42'
+    user: process.env.MAIL,
+    pass: process.env.MAIL_PASSWORD
 }
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -154,8 +154,8 @@ async function deleteKey(id_player){
 player_config.post('/sendEmailConfirmation',jsonParser,  wrap(async(req,res,next)=>{
     var password = req.body.password;
     var email = req.body.email;
-    var hiddenLink = 'http://144.126.216.255:8080/confirmEmail/'+email+'/'+password
-    var link = 'http://144.126.216.255:8080/confirmEmail'
+    var hiddenLink = 'http://localhost:8080/confirmEmail/'+email+'/'+password
+    var link = 'http://localhost:8080/confirmEmail'
 
     var mailOptions = {
         from: officialMail.user,

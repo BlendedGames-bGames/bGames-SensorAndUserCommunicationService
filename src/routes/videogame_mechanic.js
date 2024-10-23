@@ -6,7 +6,7 @@ var bodyParser =require('body-parser');
 var jsonParser = bodyParser.json()
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
-const sensorHost = "bgames-SensorManagementService:3007"
+const sensorHost = "localhost:3007"
 
 /* 
 CRUD de videogames, mechanics y su relacion

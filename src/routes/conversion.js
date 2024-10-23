@@ -4,7 +4,7 @@ const axios = require('axios').default;
 var bodyParser =require('body-parser');
 
 var jsonParser = bodyParser.json()
-const sensorHost = "bgames-SensorManagementService:3007"
+const sensorHost = "localhost:3007"
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 //CRUD de conversions 
